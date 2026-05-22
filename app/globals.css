@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #090e0c;
+  --color-bg-2: #0d1510;
+  --color-bg-3: #111a14;
+  --color-surface: #131f18;
+  --color-teal: #00e5a0;
+  --color-teal-hover: #00ffb3;
+  --color-teal-2: #00b87e;
+  --color-teal-3: #00875c;
+  --color-dim: #1e2e26;
+  --color-border: #1f3329;
+  --color-muted: #4d7a62;
+  --color-text: #d4f0e3;
+  --color-text-2: #8ab8a0;
+  --color-text-3: #4d7a62;
+  --font-sans: var(--font-sora);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background: #090e0c;
+  color: #d4f0e3;
+  font-family: var(--font-sora);
+  line-height: 1.7;
+  overflow-x: hidden;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,180,100,0.08) 0%, transparent 60%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(0,229,160,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,160,0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-image-shadow {
+  filter: drop-shadow(0 20px 60px color-mix(in srgb, var(--color-teal) 18%, transparent))
+          drop-shadow(0 0 1px color-mix(in srgb, var(--color-teal) 10%, transparent));
+}
+
+.hero-glow-gradient {
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--color-teal) 25%, transparent), transparent 70%);
+}
+
