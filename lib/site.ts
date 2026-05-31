@@ -1,5 +1,5 @@
 export const GITHUB_URL = 'https://github.com/Mangulabnan-Bernard';
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/bernard-mangulabnan-b402443a1/';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/bernard-mangulabnan';
 
 export const PROJECT_URLS = {
   rentahuman: 'https://rentahuman-web.vercel.app/',

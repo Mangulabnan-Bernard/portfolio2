@@ -1,13 +1,15 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 const NAV_LINKS = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
 ] as const;
 
 const linkClassName =
@@ -20,15 +22,15 @@ export default function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-[60px] bg-bg/85 backdrop-blur-[20px] border-b border-border">
-      <a href="#hero" className="nav-logo font-mono text-[13px] tracking-[0.08em] text-teal font-semibold flex items-center gap-2 no-underline" onClick={closeMenu}>
+      <Link href="/" className="nav-logo font-mono text-[13px] tracking-[0.08em] text-teal font-semibold flex items-center gap-2 no-underline" onClick={closeMenu}>
         <span className="text-text-2">&lt;</span>BCM<span className="text-text-2">/&gt;</span>
-      </a>
+      </Link>
 
       <div className="nav-links hidden md:flex gap-8">
         {NAV_LINKS.map((link) => (
-          <a key={link.href} href={link.href} className={linkClassName}>
+          <Link key={link.href} href={link.href} className={linkClassName} onClick={closeMenu}>
             {link.label}
-          </a>
+          </Link>
         ))}
       </div>
 
@@ -59,9 +61,9 @@ export default function Nav() {
           className="absolute top-[60px] left-0 right-0 flex flex-col gap-1 p-4 bg-bg/97 border-b border-border md:hidden"
         >
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className={`${linkClassName} py-3 px-2`} onClick={closeMenu}>
+            <Link key={link.href} href={link.href} className={`${linkClassName} py-3 px-2`} onClick={closeMenu}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

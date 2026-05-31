@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import Pwa from '@/components/Pwa';
 import "./globals.css";
 
 const sora = Sora({
@@ -18,14 +21,16 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
-const title = "Bernard C. Mangulabnan — Full Stack Web Developer";
+const title = "Bernard C. Mangulabnan — Web Developer | Next.js, React, TypeScript";
 const description =
-  "I build websites and web apps that are fast, intuitive, and polished. Experienced in modern full-stack development with a passion for clean code and great user experiences.";
+  "Web Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
+  manifest: '/manifest.json',
+  themeColor: '#2dd4bf',
   openGraph: {
     title,
     description,
@@ -51,7 +56,12 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        <Nav />
+        {children}
+        <Footer />
+        <Pwa />
+      </body>
     </html>
   );
 }

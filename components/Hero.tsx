@@ -1,12 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const ROLES = [
-  'Full Stack Web Developer_',
-  'Mobile App Developer_',
-  'AI-Augmented Engineer_',
-  'Next.js · React · TypeScript_',
+  'Web Developer_',
+  'React · Next.js · TypeScript_',
+  'Node.js · Tailwind CSS · AI Tools_',
+  'Fast, polished, user-friendly products_',
 ] as const;
 
 export default function Hero() {
@@ -61,15 +62,15 @@ export default function Hero() {
           <span className="cursor inline-block w-[2px] h-1em bg-teal vertical-align-middle animate-blink ml-[2px]"></span>
         </div>
         <p className="hero-desc max-w-[580px] text-text-2 text-[1rem] leading-[1.8] mb-10">
-          I build websites and web apps that are fast, intuitive, and polished. Experienced in modern full-stack development with a passion for clean code and great user experiences.
+          Web Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.
         </p>
         <div className="hero-actions flex gap-4 flex-wrap mb-16">
-          <a href="#projects" className="btn-primary font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-teal text-bg border-none rounded-[8px] cursor-pointer no-underline font-bold transition-all hover:bg-teal-hover hover:-translate-y-0.5 inline-block">
+          <Link href="/projects" className="btn-primary font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-teal text-bg border-none rounded-[8px] cursor-pointer no-underline font-bold transition-all hover:bg-teal-hover hover:-translate-y-0.5 inline-block">
             View Projects
-          </a>
-          <a href="#contact" className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-block">
+          </Link>
+          <Link href="/contact" className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-block">
             Get In Touch
-          </a>
+          </Link>
         </div>
         <div className="hero-stats flex gap-10 pt-10 border-t border-border flex-wrap">
           <div className="stat-item">

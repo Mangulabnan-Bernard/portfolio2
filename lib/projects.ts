@@ -18,10 +18,10 @@ export const PROJECTS: Project[] = [
   {
     featured: true,
     badge: 'Thesis Project · AI/ML',
-    title: 'SmartGrow — AI Crop Health System',
+    title: 'Smart Grow – AI Crop Health Monitor',
     description:
-      'A Flutter mobile app that uses dual AI (TensorFlow Lite offline + Gemini AI cloud) to detect diseases in Tomato, Red Onion, and Garlic crops from photos. Gives farmers actionable advice and tracks crop health over 7 days. Evaluated with Accuracy, Precision, Recall, and F1-Score; app quality tested against ISO/IEC 25010.',
-    tech: ['Flutter', 'TensorFlow Lite', 'Gemini AI', 'Firebase', 'Dart', 'ISO/IEC 25010'],
+      'A Flutter mobile app that diagnoses Tomato, Red Onion, and Garlic crops with machine learning from photos. Tracks health over 7 days and gives actionable guidance for growers. Evaluated using Accuracy, Precision, Recall, and F1-Score, with app quality assessed against ISO/IEC 25010.',
+    tech: ['Flutter', 'Machine Learning', 'TensorFlow Lite', 'Dart', 'AI', 'ISO/IEC 25010'],
     links: [
       { type: 'soon', label: 'Demo coming soon' },
       { type: 'github', href: GITHUB_REPOS.atmGo },
@@ -59,10 +59,10 @@ export const PROJECTS: Project[] = [
   },
   {
     badge: 'Fintech · Mobile',
-    title: 'CIMB Bank Mobile Application',
+    title: 'ATM Go – Mobile Banking App',
     description:
-      'Contributed to a mobile banking app by building features for money transfers, account management, and secure login. Improved UI/UX across different device sizes.',
-    tech: ['React Native', 'Mobile Banking', 'Security', 'Fintech'],
+      'A mobile banking app built with Flutter and Dart. Provides money transfers, account management, secure login, and a clean cross-device UI.',
+    tech: ['Flutter', 'Dart', 'Mobile Banking', 'UI/UX'],
     links: [{ type: 'soon', label: 'Case study coming soon' }],
   },
   {
