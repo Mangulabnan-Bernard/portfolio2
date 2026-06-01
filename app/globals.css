@@ -1,39 +1,128 @@
 @import "tailwindcss";
 
+/* Tailwind color utilities (text-teal, bg-bg, border-border, …) keep their
+   names but resolve to per-theme CSS variables, so swapping `data-theme` on
+   <html> re-skins the entire site without touching any component. */
 @theme inline {
-  --color-bg: #090e0c;
-  --color-bg-2: #0d1510;
-  --color-bg-3: #111a14;
-  --color-surface: #131f18;
-  --color-teal: #00e5a0;
-  --color-teal-hover: #00ffb3;
-  --color-teal-2: #00b87e;
-  --color-teal-3: #00875c;
-  --color-dim: #1e2e26;
-  --color-border: #1f3329;
-  --color-muted: #4d7a62;
-  --color-text: #d4f0e3;
-  --color-text-2: #8ab8a0;
-  --color-text-3: #4d7a62;
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-surface: var(--surface);
+  --color-teal: var(--accent);
+  --color-teal-hover: var(--accent-hover);
+  --color-teal-2: var(--accent-2);
+  --color-teal-3: var(--accent-3);
+  --color-dim: var(--dim);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
   --font-sans: var(--font-sora);
   --font-mono: var(--font-jetbrains);
 }
 
+/* ---------- Theme palettes ---------- */
+:root,
+[data-theme="green"] {
+  --bg: #090e0c;
+  --bg-2: #0d1510;
+  --bg-3: #111a14;
+  --surface: #131f18;
+  --accent: #00e5a0;
+  --accent-hover: #00ffb3;
+  --accent-2: #00b87e;
+  --accent-3: #00875c;
+  --dim: #1e2e26;
+  --border: #1f3329;
+  --muted: #4d7a62;
+  --text: #d4f0e3;
+  --text-2: #8ab8a0;
+  --text-3: #4d7a62;
+  --glow: rgba(0, 180, 100, 0.08);
+  --grid: rgba(0, 229, 160, 0.018);
+}
+
+[data-theme="orange"] {
+  --bg: #0f0a06;
+  --bg-2: #160f09;
+  --bg-3: #1c130c;
+  --surface: #211810;
+  --accent: #ff8c42;
+  --accent-hover: #ffa15c;
+  --accent-2: #e3712a;
+  --accent-3: #a85420;
+  --dim: #30241b;
+  --border: #36291f;
+  --muted: #836a52;
+  --text: #f3e7d8;
+  --text-2: #c0a488;
+  --text-3: #836a52;
+  --glow: rgba(200, 110, 0, 0.10);
+  --grid: rgba(255, 140, 60, 0.02);
+}
+
+[data-theme="blue"] {
+  --bg: #070a0f;
+  --bg-2: #0a0f16;
+  --bg-3: #0d131c;
+  --surface: #121a23;
+  --accent: #3b9eff;
+  --accent-hover: #5cb2ff;
+  --accent-2: #2a7fe3;
+  --accent-3: #2060a8;
+  --dim: #1b2733;
+  --border: #1f2c3a;
+  --muted: #56738f;
+  --text: #d8e6f5;
+  --text-2: #92a8c2;
+  --text-3: #56738f;
+  --glow: rgba(0, 110, 220, 0.10);
+  --grid: rgba(60, 158, 255, 0.02);
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;        /* white page */
+  --bg-2: #f1f4f3;
+  --bg-3: #e9edeb;
+  --surface: #dbe2de;   /* strong light gray cards — clearly off the white page */
+  --accent: #007a54;    /* darker green so accent text is readable */
+  --accent-hover: #006646;
+  --accent-2: #006646;
+  --accent-3: #00543a;
+  --dim: #c9d2cc;       /* tag/chip fill, darker than cards */
+  --border: #bccabf;    /* visible card/input borders */
+  --muted: #4f675b;     /* ~5.4:1 — readable small labels */
+  --text: #0b1712;      /* near-black body text */
+  --text-2: #2b3a33;
+  --text-3: #4f675b;
+  --glow: rgba(0, 140, 90, 0.08);
+  --grid: rgba(0, 120, 80, 0.035);
+}
+
+/* Light mode: white cards on a light page look flat with only a border,
+   so give every surface/card real depth with a soft shadow. */
+[data-theme="light"] .bg-surface,
+[data-theme="light"] .project-card {
+  box-shadow: 0 1px 2px rgba(11, 23, 18, 0.06), 0 12px 30px -18px rgba(11, 23, 18, 0.22);
+}
+
 body {
-  background: #090e0c;
-  color: #d4f0e3;
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-sora);
   line-height: 1.7;
   overflow-x: hidden;
-  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,180,100,0.08) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, var(--glow) 0%, transparent 60%);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(rgba(0,229,160,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,229,160,0.018) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -89,4 +178,3 @@ html {
 .hero-glow-gradient {
   background: radial-gradient(ellipse, color-mix(in srgb, var(--color-teal) 25%, transparent), transparent 70%);
 }
-

@@ -34,7 +34,7 @@ export default function About({ summary = false }: AboutProps) {
           {!summary ? (
             <>
               <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
-                Proficient in HTML5, CSS3, JavaScript, React, Next.js, Node.js, and TypeScript. I also work with mobile development tools like Flutter and Dart, and back-end systems using PostgreSQL, Drizzle ORM, Prisma, MySQL, and PHP.
+                Proficient in HTML5, CSS3, JavaScript, React, Next.js, Node.js, and TypeScript. I also work with mobile development tools like Flutter and Dart, and back-end systems using PostgreSQL, Prisma, MySQL, and PHP.
               </p>
               <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
                 I leverage AI tools such as Claude, Claude Code, ChatGPT, Cursor, and Windsurf to boost efficiency. I&apos;m a fast learner and collaborative team player ready to grow in a professional environment.

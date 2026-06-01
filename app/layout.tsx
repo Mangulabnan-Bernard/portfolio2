@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -30,7 +30,6 @@ export const metadata: Metadata = {
   title,
   description,
   manifest: '/manifest.json',
-  themeColor: '#2dd4bf',
   openGraph: {
     title,
     description,
@@ -46,6 +45,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#00e5a0",
+};
+
+// Applies the saved theme before paint so there's no flash of the default theme.
+const themeBootScript = `(function(){try{var t=localStorage.getItem('theme');if(t&&t!=='green'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,9 +60,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${sora.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="min-h-screen">
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         <Nav />
         {children}
         <Footer />

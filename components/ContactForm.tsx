@@ -17,6 +17,8 @@ export default function ContactForm() {
       name: String(data.get('name') ?? '').trim(),
       email: String(data.get('email') ?? '').trim(),
       message: String(data.get('message') ?? '').trim(),
+      // Honeypot: real users never fill this hidden field; bots do.
+      company: String(data.get('company') ?? ''),
     };
 
     setStatus('sending');
@@ -73,6 +75,17 @@ export default function ContactForm() {
           required
           placeholder="john@example.com"
           className="w-full bg-bg border border-border rounded-[8px] px-3.5 py-2.5 font-sans text-[13px] text-text outline-none transition-colors focus:border-teal-3"
+        />
+      </div>
+      {/* Honeypot field — hidden from real users, catches spam bots. */}
+      <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-company">Company (leave blank)</label>
+        <input
+          id="contact-company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
         />
       </div>
       <div className="form-group mb-5">

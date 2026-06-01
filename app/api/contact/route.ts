@@ -11,6 +11,21 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+// Lightweight in-memory rate limit: max 5 submissions per IP per 10 minutes.
+// Note: resets on cold start and isn't shared across serverless instances —
+// good enough to blunt casual abuse without external infra.
+const RATE_LIMIT = 5;
+const WINDOW_MS = 10 * 60 * 1000;
+const hits = new Map<string, number[]>();
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  recent.push(now);
+  hits.set(ip, recent);
+  return recent.length > RATE_LIMIT;
+}
+
 export async function POST(request: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
@@ -26,7 +41,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
   }
 
-  const { name, email, message } = (body ?? {}) as Record<string, unknown>;
+  const { name, email, message, company } = (body ?? {}) as Record<string, unknown>;
+
+  // Honeypot: bots fill the hidden "company" field. Pretend success and drop it.
+  if (String(company ?? '').trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: 'Too many messages. Please try again later.' },
+      { status: 429 }
+    );
+  }
+
   const cleanName = String(name ?? '').trim();
   const cleanEmail = String(email ?? '').trim();
   const cleanMessage = String(message ?? '').trim();
