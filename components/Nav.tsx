@@ -39,12 +39,13 @@ export default function Nav() {
         <div className="hidden sm:flex">
           <ThemeSwitcher />
         </div>
-        <a
-          href="mailto:mangulabnan.bernard321@gmail.com"
+        <Link
+          href="/contact"
+          onClick={closeMenu}
           className="nav-cta font-mono text-[11px] tracking-[0.1em] px-[14px] md:px-[18px] py-[6px] border border-teal-3 text-teal bg-teal/5 no-underline rounded-[8px] transition-all hover:bg-teal/12 hover:border-teal"
         >
           Hire Me →
-        </a>
+        </Link>
         <button
           type="button"
           className="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 p-2 border border-border rounded-[8px] bg-surface cursor-pointer"

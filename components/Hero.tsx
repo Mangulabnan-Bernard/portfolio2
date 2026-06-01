@@ -71,6 +71,14 @@ export default function Hero() {
           <Link href="/contact" className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-block">
             Get In Touch
           </Link>
+          <a
+            href="/BernardMangulabnan_Resume.pdf"
+            download
+            className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-flex items-center gap-2"
+          >
+            Download CV
+            <span aria-hidden="true">↓</span>
+          </a>
         </div>
         <div className="hero-stats flex gap-10 pt-10 border-t border-border flex-wrap">
           <div className="stat-item">
