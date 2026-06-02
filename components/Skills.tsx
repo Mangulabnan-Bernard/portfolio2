@@ -79,7 +79,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     blurb:
       'Shipping faster with AI-assisted development, plus on-device machine learning using TensorFlow.',
     items: [
-      { name: 'Claude Code', slug: 'claude' },
       { name: 'ChatGPT', slug: 'openai' },
       { name: 'Cursor' },
       { name: 'Windsurf' },
@@ -112,7 +111,6 @@ const TOOLKIT: Skill[] = [
   { name: 'Node.js', slug: 'nodedotjs' },
   { name: 'Flutter', slug: 'flutter' },
   { name: 'PostgreSQL', slug: 'postgresql' },
-  { name: 'Claude Code', slug: 'claude' },
 ];
 
 const ALL_SKILLS: Skill[] = SKILL_CATEGORIES.flatMap((c) => c.items);

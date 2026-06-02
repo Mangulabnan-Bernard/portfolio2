@@ -45,8 +45,8 @@ export default function Experience({ summary = false }: ExperienceProps) {
       <SectionHeader label={summary ? 'Experience' : 'Work History'} title="Experience_" />
       <RevealSection className="exp-timeline flex flex-col gap-0">
         {visibleItems.map((item, index) => (
-          <div key={item.role} className="exp-item grid grid-cols-[180px_1fr] gap-0 md:gap-8 relative pb-10">
-            <div className="exp-date font-mono text-[11px] text-muted pt-1 text-right leading-[1.6] whitespace-pre-line">
+          <div key={item.role} className="exp-item grid grid-cols-1 md:grid-cols-[180px_1fr] gap-1.5 md:gap-8 relative pb-8 md:pb-10">
+            <div className="exp-date font-mono text-[11px] text-muted md:pt-1 md:pr-8 text-left md:text-right leading-[1.6] whitespace-pre-line">
               {item.period}
             </div>
             {index !== visibleItems.length - 1 && (
