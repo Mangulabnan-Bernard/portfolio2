@@ -9,12 +9,39 @@ type AboutProps = {
 };
 
 const HIGHLIGHTS = [
-  { icon: '🎓', title: 'CS Student', subtitle: 'Holy Cross College · 2022–2026' },
-  { icon: '⚡', title: 'Full Stack Developer', subtitle: 'React · Next.js · Node.js · TypeScript' },
-  { icon: '📱', title: 'Mobile App Developer', subtitle: 'Flutter · React Native' },
-  { icon: '🤖', title: 'AI-Augmented Developer', subtitle: 'Claude · Cursor · Windsurf · ChatGPT' },
-  { icon: '☁️', title: 'Cloud & DevOps', subtitle: 'Vercel · AWS · Hostinger · Git' },
+  { icon: 'cap', title: 'CS Student', subtitle: 'Holy Cross College · 2022–2026' },
+  { icon: 'stack', title: 'Full Stack Developer', subtitle: 'React · Next.js · Node.js · TypeScript' },
+  { icon: 'mobile', title: 'Mobile App Developer', subtitle: 'Flutter · React Native' },
+  { icon: 'ai', title: 'AI-Augmented Developer', subtitle: 'Claude · Cursor · Windsurf · ChatGPT' },
+  { icon: 'cloud', title: 'Cloud & DevOps', subtitle: 'Vercel · AWS · Hostinger · Git' },
 ];
+
+function HighlightIcon({ name }: { name: string }) {
+  const common = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 20 20',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+  switch (name) {
+    case 'cap':
+      return (<svg {...common}><path d="M10 4 2 7l8 3 8-3-8-3Z" /><path d="M5 9v3.5c0 1 2.4 2 5 2s5-1 5-2V9" /><path d="M18 7.2v3.8" /></svg>);
+    case 'stack':
+      return (<svg {...common}><path d="M10 3 3 6.5 10 10l7-3.5L10 3Z" /><path d="m3 10 7 3.5L17 10" /><path d="m3 13.5 7 3.5 7-3.5" /></svg>);
+    case 'mobile':
+      return (<svg {...common}><rect x="6" y="2.5" width="8" height="15" rx="2" /><path d="M9 14.7h2" /></svg>);
+    case 'ai':
+      return (<svg {...common}><path d="M10 3.5 11.4 7 15 8.4 11.4 9.8 10 13.5 8.6 9.8 5 8.4 8.6 7 10 3.5Z" /><path d="M15.6 13.2l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z" /></svg>);
+    case 'cloud':
+      return (<svg {...common}><path d="M6.5 15.5a3.3 3.3 0 0 1-.3-6.6A4.7 4.7 0 0 1 15.4 9 3.25 3.25 0 0 1 15 15.5H6.5Z" /></svg>);
+    default:
+      return null;
+  }
+}
 
 // Two overlapping, tilted portraits with a soft accent glow behind them.
 function AboutPhotos() {
@@ -68,8 +95,8 @@ export default function About({ summary = false }: AboutProps) {
                   key={item.title}
                   className="highlight-card bg-surface border border-border rounded-[12px] p-3.5 flex items-center gap-3 transition-colors hover:border-teal-3"
                 >
-                  <div className="highlight-icon text-[1.1rem] min-w-[34px] h-[34px] bg-teal/8 rounded-[8px] flex items-center justify-center">
-                    {item.icon}
+                  <div className="highlight-icon min-w-[34px] h-[34px] bg-teal/8 text-teal rounded-[8px] flex items-center justify-center">
+                    <HighlightIcon name={item.icon} />
                   </div>
                   <div>
                     <div className="font-mono text-[12px] font-semibold text-text">{item.title}</div>
@@ -116,8 +143,8 @@ export default function About({ summary = false }: AboutProps) {
                 key={item.title}
                 className="highlight-card bg-surface border border-border rounded-[14px] p-5 flex items-start gap-3 transition-colors hover:border-teal-3"
               >
-                <div className="highlight-icon text-[1.3rem] min-w-[36px] h-[36px] bg-teal/8 rounded-[8px] flex items-center justify-center">
-                  {item.icon}
+                <div className="highlight-icon min-w-[36px] h-[36px] bg-teal/8 text-teal rounded-[8px] flex items-center justify-center">
+                  <HighlightIcon name={item.icon} />
                 </div>
                 <div>
                   <div className="highlight-title font-mono text-[12px] font-semibold text-text mb-[2px]">{item.title}</div>

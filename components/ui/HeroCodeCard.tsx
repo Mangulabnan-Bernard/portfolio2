@@ -4,14 +4,15 @@ import { useEffect, useState } from 'react';
 
 const COMMANDS = ['npm run build', 'git push origin main', 'vercel --prod', 'npm run dev'];
 
-// Classic editor syntax palette — fixed (dark) regardless of site theme.
+// Editor syntax palette — driven by CSS vars so it follows the theme
+// (dark editor by default, light editor in the light theme).
 const C = {
-  key: '#ff7b72',
-  var: '#d2a8ff',
-  prop: '#79c0ff',
-  str: '#a5d6ff',
-  bool: '#79c0ff',
-  punc: '#8b949e',
+  key: 'var(--code-key)',
+  var: 'var(--code-var)',
+  prop: 'var(--code-prop)',
+  str: 'var(--code-str)',
+  bool: 'var(--code-prop)',
+  punc: 'var(--code-punc)',
 };
 
 const K = ({ children }: { children: React.ReactNode }) => <span style={{ color: C.key }}>{children}</span>;
@@ -57,23 +58,23 @@ export default function HeroCodeCard() {
   return (
     <div className="relative w-full max-w-[460px] mx-auto md:mx-0">
       <div className="absolute -inset-3 rounded-[24px] blur-3xl" style={{ background: 'var(--color-teal)', opacity: 0.1 }} />
-      <div className="relative rounded-[12px] overflow-hidden border border-[#30363d] bg-[#0d1117] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)]">
+      <div className="relative rounded-[12px] overflow-hidden border border-[var(--code-border)] bg-[var(--code-bg)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.45)]">
         {/* Title bar */}
-        <div className="flex items-center gap-2 px-4 h-10 bg-[#161b22] border-b border-[#30363d]">
+        <div className="flex items-center gap-2 px-4 h-10 bg-[var(--code-titlebar)] border-b border-[var(--code-border)]">
           <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
           <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-          <span className="ml-3 font-mono text-[11px] text-[#8b949e]">bernard.ts</span>
+          <span className="ml-3 font-mono text-[11px] text-[var(--code-punc)]">bernard.ts</span>
         </div>
 
         {/* Code */}
         <div className="flex gap-4 px-4 md:px-5 py-5 font-mono text-[12px] md:text-[12.5px] leading-[1.75] overflow-x-auto">
-          <div className="flex flex-col text-right text-[#484f58] select-none">
+          <div className="flex flex-col text-right text-[var(--code-line)] select-none">
             {LINES.map((_, i) => (
               <span key={i}>{i + 1}</span>
             ))}
           </div>
-          <div className="flex flex-col whitespace-pre text-[#c9d1d9]">
+          <div className="flex flex-col whitespace-pre text-[var(--code-base)]">
             {LINES.map((line, i) => (
               <span key={i}>{line}</span>
             ))}
@@ -81,11 +82,11 @@ export default function HeroCodeCard() {
         </div>
 
         {/* Terminal */}
-        <div className="px-4 md:px-5 py-3 border-t border-[#30363d] bg-[#010409] font-mono text-[12px]">
-          <span style={{ color: '#27c93f' }}>~/portfolio</span>{' '}
-          <span style={{ color: '#8b949e' }}>$</span>{' '}
-          <span style={{ color: '#c9d1d9' }}>{text}</span>
-          <span className="animate-blink" style={{ color: '#c9d1d9' }}>▋</span>
+        <div className="px-4 md:px-5 py-3 border-t border-[var(--code-border)] bg-[var(--code-term-bg)] font-mono text-[12px]">
+          <span style={{ color: 'var(--code-prompt)' }}>~/portfolio</span>{' '}
+          <span style={{ color: 'var(--code-punc)' }}>$</span>{' '}
+          <span style={{ color: 'var(--code-base)' }}>{text}</span>
+          <span className="animate-blink" style={{ color: 'var(--code-base)' }}>▋</span>
         </div>
       </div>
     </div>

@@ -25,6 +25,19 @@
 /* ---------- Theme palettes ---------- */
 /* Default theme (blue). Explicit [data-theme="..."] blocks below override it. */
 :root {
+  /* Code card (editor) — dark by default; overridden in the light theme below. */
+  --code-bg: #0d1117;
+  --code-titlebar: #161b22;
+  --code-term-bg: #010409;
+  --code-border: #30363d;
+  --code-line: #484f58;
+  --code-base: #c9d1d9;
+  --code-key: #ff7b72;
+  --code-var: #d2a8ff;
+  --code-prop: #79c0ff;
+  --code-str: #a5d6ff;
+  --code-punc: #8b949e;
+  --code-prompt: #3fb950;
   --bg: #070a0f;
   --bg-2: #0a0f16;
   --bg-3: #0d131c;
@@ -101,6 +114,19 @@
 }
 
 [data-theme="light"] {
+  /* Light editor (GitHub-light palette) */
+  --code-bg: #ffffff;
+  --code-titlebar: #f6f8fa;
+  --code-term-bg: #f6f8fa;
+  --code-border: #d0d7de;
+  --code-line: #8c959f;
+  --code-base: #1f2328;
+  --code-key: #cf222e;
+  --code-var: #8250df;
+  --code-prop: #0550ae;
+  --code-str: #0a3069;
+  --code-punc: #6e7781;
+  --code-prompt: #1a7f37;
   --bg: #ffffff;        /* white page */
   --bg-2: #f1f4f3;
   --bg-3: #e9edeb;
@@ -185,6 +211,16 @@ html {
 
 .animate-fade {
   animation: fadeIn 0.35s ease;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 .reveal {
