@@ -12,12 +12,12 @@ const THEMES: { id: ThemeId; label: string; swatch: string; meta: string }[] = [
 ];
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState<ThemeId>('green');
+  const [theme, setTheme] = useState<ThemeId>('blue');
 
   // Sync the control with whatever the no-flash boot script already applied.
   // Done post-hydration (not during render) so server/client markup matches.
   useEffect(() => {
-    const current = (document.documentElement.getAttribute('data-theme') as ThemeId) || 'green';
+    const current = (document.documentElement.getAttribute('data-theme') as ThemeId) || 'blue';
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(current);
   }, []);

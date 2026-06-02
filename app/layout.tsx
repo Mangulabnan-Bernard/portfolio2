@@ -47,11 +47,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#00e5a0",
+  themeColor: "#3b9eff",
 };
 
 // Applies the saved theme before paint so there's no flash of the default theme.
-const themeBootScript = `(function(){try{var t=localStorage.getItem('theme');if(t&&t!=='green'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
+const themeBootScript = `(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
 
 export default function RootLayout({
   children,

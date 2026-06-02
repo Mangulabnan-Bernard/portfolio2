@@ -23,7 +23,6 @@
 }
 
 /* ---------- Theme palettes ---------- */
-:root,
 [data-theme="green"] {
   --bg: #090e0c;
   --bg-2: #0d1510;
@@ -39,8 +38,8 @@
   --text: #d4f0e3;
   --text-2: #8ab8a0;
   --text-3: #4d7a62;
-  --glow: rgba(0, 180, 100, 0.08);
-  --grid: rgba(0, 229, 160, 0.018);
+  --glow: rgba(0, 180, 100, 0.024);
+  --grid: rgba(0, 229, 160, 0.0054);
 }
 
 [data-theme="orange"] {
@@ -58,10 +57,11 @@
   --text: #f3e7d8;
   --text-2: #c0a488;
   --text-3: #836a52;
-  --glow: rgba(200, 110, 0, 0.10);
-  --grid: rgba(255, 140, 60, 0.02);
+  --glow: rgba(200, 110, 0, 0.03);
+  --grid: rgba(255, 140, 60, 0.006);
 }
 
+:root,
 [data-theme="blue"] {
   --bg: #070a0f;
   --bg-2: #0a0f16;
@@ -77,8 +77,8 @@
   --text: #d8e6f5;
   --text-2: #92a8c2;
   --text-3: #56738f;
-  --glow: rgba(0, 110, 220, 0.10);
-  --grid: rgba(60, 158, 255, 0.02);
+  --glow: rgba(0, 110, 220, 0.03);
+  --grid: rgba(60, 158, 255, 0.006);
 }
 
 [data-theme="light"] {
@@ -96,8 +96,8 @@
   --text: #0b1712;      /* near-black body text */
   --text-2: #2b3a33;
   --text-3: #4f675b;
-  --glow: rgba(0, 140, 90, 0.08);
-  --grid: rgba(0, 120, 80, 0.035);
+  --glow: rgba(0, 140, 90, 0.024);
+  --grid: rgba(0, 120, 80, 0.0105);
 }
 
 /* Light mode: white cards on a light page look flat with only a border,
@@ -157,6 +157,15 @@ html {
 
 .animate-float {
   animation: float 5s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.35s ease;
 }
 
 .reveal {
