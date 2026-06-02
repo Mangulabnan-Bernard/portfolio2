@@ -85,7 +85,6 @@ export const PROJECTS: Project[] = [
     tech: ['Flutter', 'Dart', 'Mobile Banking', 'UI/UX'],
     accent: '#06b6d4',
     links: [
-      { type: 'soon', label: 'Case study coming soon' },
       { type: 'github', href: GITHUB_REPOS.atmGo },
     ],
   },
@@ -97,7 +96,6 @@ export const PROJECTS: Project[] = [
     tech: ['PHP', 'MySQL', 'Bootstrap', 'XAMPP'],
     accent: '#ef4444',
     links: [
-      { type: 'live', href: PROJECT_URLS.bicrs },
       { type: 'github', href: GITHUB_REPOS.pos },
     ],
   },
