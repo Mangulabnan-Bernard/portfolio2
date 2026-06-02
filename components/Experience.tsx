@@ -15,7 +15,6 @@ const EXPERIENCE_ITEMS = [
     bullets: [
       'Developed custom websites and web apps from design to deployment using Next.js, Tailwind CSS, and AI tools.',
       'Built user-focused interfaces and optimized performance on every project.',
-      'Managed hosting, deployment, and client collaboration to deliver polished final products.',
     ],
   },
   {

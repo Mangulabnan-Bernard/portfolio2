@@ -7,7 +7,7 @@ import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
 import { PROJECTS, type Project, type ProjectLink } from '@/lib/projects';
 
 type FilterId = 'all' | 'web' | 'mobile';
-type LayoutId = 'explorer' | 'bento' | 'carousel' | 'list' | 'story';
+type LayoutId = 'explorer' | 'flip' | 'spotlight' | 'list' | 'story';
 
 const FILTERS: { id: FilterId; label: string }[] = [
   { id: 'all', label: 'All' },
@@ -17,8 +17,8 @@ const FILTERS: { id: FilterId; label: string }[] = [
 
 const LAYOUTS: { id: LayoutId; label: string }[] = [
   { id: 'explorer', label: 'Explorer' },
-  { id: 'bento', label: 'Bento' },
-  { id: 'carousel', label: 'Carousel' },
+  { id: 'flip', label: 'Flip' },
+  { id: 'spotlight', label: 'Spotlight' },
   { id: 'list', label: 'List' },
   { id: 'story', label: 'Story' },
 ];
@@ -84,13 +84,13 @@ function LayoutIcon({ id }: { id: LayoutId }) {
       return (
         <svg {...common}><rect x="1.5" y="2.5" width="4.5" height="11" rx="1" /><rect x="8" y="2.5" width="6.5" height="11" rx="1" /></svg>
       );
-    case 'bento':
+    case 'flip':
       return (
-        <svg {...common}><rect x="1.5" y="1.5" width="6" height="6" rx="1" /><rect x="9.5" y="1.5" width="5" height="5" rx="1" /><rect x="1.5" y="9.5" width="5" height="5" rx="1" /><rect x="9.5" y="8.5" width="5" height="6" rx="1" /></svg>
+        <svg {...common}><rect x="1.5" y="1.5" width="13" height="13" rx="2" /><path d="M10.5 6.6a3 3 0 1 0 .7 2.1" /><path d="M10.9 4.4v2.4H8.6" /></svg>
       );
-    case 'carousel':
+    case 'spotlight':
       return (
-        <svg {...common}><rect x="5" y="3.5" width="6" height="9" rx="1" /><path d="M2.5 5.5 1 8l1.5 2.5" /><path d="M13.5 5.5 15 8l-1.5 2.5" /></svg>
+        <svg {...common}><rect x="1.5" y="1.5" width="13" height="6.5" rx="1" /><rect x="1.5" y="10" width="3.6" height="4.5" rx="1" /><rect x="6.2" y="10" width="3.6" height="4.5" rx="1" /><rect x="10.9" y="10" width="3.6" height="4.5" rx="1" /></svg>
       );
     case 'list':
       return (
@@ -155,8 +155,8 @@ export default function ProjectsExplorer() {
       {/* Layout */}
       <div key={layout} className="animate-fade">
         {layout === 'explorer' && <ExplorerLayout projects={projects} />}
-        {layout === 'bento' && <BentoLayout projects={projects} />}
-        {layout === 'carousel' && <CarouselLayout projects={projects} />}
+        {layout === 'flip' && <FlipLayout projects={projects} />}
+        {layout === 'spotlight' && <SpotlightLayout projects={projects} />}
         {layout === 'list' && <HoverListLayout projects={projects} />}
         {layout === 'story' && <StoryLayout projects={projects} />}
       </div>
@@ -211,20 +211,53 @@ function ExplorerLayout({ projects }: { projects: Project[] }) {
   );
 }
 
-/* 2) Bento — asymmetric image tiles */
-function BentoLayout({ projects }: { projects: Project[] }) {
+/* 2) Flip — cover tiles that flip to reveal details (tap the ⓘ) */
+function FlipLayout({ projects }: { projects: Project[] }) {
+  const [flipped, setFlipped] = useState<string | null>(null);
   const live = (p: Project) => p.links.find((l): l is Extract<ProjectLink, { type: 'live' }> => l.type === 'live');
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[170px] gap-4">
-      {projects.map((p, i) => {
-        const span = p.featured ? 'col-span-2 row-span-2' : i % 5 === 3 ? 'col-span-2' : '';
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {projects.map((p) => {
+        const isFlipped = flipped === p.title;
         return (
-          <div key={p.title} className={`group relative rounded-[16px] overflow-hidden border border-border ${span}`}>
-            <ProjectCover title={p.title} badge={p.badge} accent={p.accent} image={p.image} liveUrl={live(p)?.href} className="absolute inset-0 w-full h-full" />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-4">
-              <h3 className="font-mono text-[13px] font-bold text-text leading-tight mb-2">{p.title}</h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity"><LinksRow project={p} /></div>
+          <div key={p.title} className="h-[340px] [perspective:1200px]">
+            <div
+              className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d]"
+              style={{ transform: isFlipped ? 'rotateY(180deg)' : undefined }}
+            >
+              {/* Front */}
+              <div className="absolute inset-0 [backface-visibility:hidden] rounded-[16px] overflow-hidden border border-border">
+                <ProjectCover title={p.title} badge={p.badge} accent={p.accent} image={p.image} liveUrl={live(p)?.href} className="absolute inset-0 w-full h-full" />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/25 to-transparent" />
+                <button
+                  type="button"
+                  onClick={() => setFlipped(p.title)}
+                  aria-label="Flip for details"
+                  className="absolute top-3 right-3 z-10 w-8 h-8 grid place-items-center rounded-full bg-bg/60 border border-border text-text-2 text-[13px] cursor-pointer transition-colors hover:text-teal hover:border-teal-3 backdrop-blur-sm"
+                >
+                  ⓘ
+                </button>
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="font-mono text-[14px] font-bold text-text mb-2">{p.title}</h3>
+                  <LinksRow project={p} />
+                </div>
+              </div>
+
+              {/* Back */}
+              <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-[16px] border border-border bg-surface p-5 flex flex-col">
+                <div className="font-mono text-[9px] tracking-[0.15em] uppercase mb-2" style={{ color: p.accent }}>{p.badge}</div>
+                <h3 className="font-mono text-[15px] font-bold text-text mb-2">{p.title}</h3>
+                <p className="text-text-2 text-[12px] leading-[1.65] mb-3 flex-1 overflow-hidden">{p.description}</p>
+                <div className="mb-3"><TechTags tech={p.tech.slice(0, 4)} /></div>
+                <button
+                  type="button"
+                  onClick={() => setFlipped(null)}
+                  className="self-start font-mono text-[10px] tracking-[0.08em] text-teal cursor-pointer hover:underline"
+                >
+                  ← Back
+                </button>
+              </div>
             </div>
           </div>
         );
@@ -233,15 +266,41 @@ function BentoLayout({ projects }: { projects: Project[] }) {
   );
 }
 
-/* 3) Carousel — horizontal snap of cards */
-function CarouselLayout({ projects }: { projects: Project[] }) {
+/* 3) Spotlight — one large feature on top, the rest in a compact grid */
+function SpotlightLayout({ projects }: { projects: Project[] }) {
+  const live = (p: Project) => p.links.find((l): l is Extract<ProjectLink, { type: 'live' }> => l.type === 'live');
+  const [feature, ...rest] = projects;
+  if (!feature) return null;
+
   return (
-    <div className="flex gap-5 overflow-x-auto snap-x pb-4 -mx-6 px-6">
-      {projects.map((p) => (
-        <div key={p.title} className="shrink-0 w-[300px] sm:w-[330px] snap-start">
-          <ProjectCard project={{ ...p, featured: false }} />
+    <div className="flex flex-col gap-6">
+      {/* Feature */}
+      <div className="grid md:grid-cols-2 bg-surface border border-border rounded-[18px] overflow-hidden">
+        <ProjectCover
+          title={feature.title}
+          badge={feature.badge}
+          accent={feature.accent}
+          image={feature.image}
+          liveUrl={live(feature)?.href}
+          collage={feature.images}
+          className="h-64 md:h-auto md:min-h-[320px]"
+        />
+        <div className="p-7 md:p-9 flex flex-col justify-center">
+          <h3 className="font-mono text-[1.5rem] font-bold text-text mb-4">{feature.title}</h3>
+          <p className="text-text-2 text-[0.95rem] leading-[1.8] mb-6">{feature.description}</p>
+          <div className="mb-6"><TechTags tech={feature.tech} /></div>
+          <LinksRow project={feature} />
         </div>
-      ))}
+      </div>
+
+      {/* The rest */}
+      {rest.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {rest.map((p) => (
+            <ProjectCard key={p.title} project={{ ...p, featured: false }} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

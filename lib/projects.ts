@@ -55,6 +55,14 @@ export const PROJECTS: Project[] = [
     tech: ['Flutter', 'Dart', 'Riverpod', 'GoRouter', 'Mobile', 'Web'],
     accent: '#fb7185',
     category: 'mobile',
+    images: [
+      '/projects/ulam1.png',
+      '/projects/ulam2.png',
+      '/projects/ulam3.png',
+      '/projects/ulam4.png',
+      '/projects/ulam5.png',
+      '/projects/ulam6.png',
+    ],
     links: [
       { type: 'soon', label: 'Live preview coming soon' },
       { type: 'soon', label: 'GitHub coming soon' },

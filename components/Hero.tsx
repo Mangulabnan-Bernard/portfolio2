@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import HeroCodeCard from '@/components/ui/HeroCodeCard';
 
 const ROLES = [
   'Web Developer_',
@@ -99,9 +100,9 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      {/* Hero photo hidden for now — uncomment to restore:
       <div className="hero-photo flex-shrink-0 w-full max-w-[320px] md:max-w-[480px] relative z-10 flex items-end justify-center mx-auto md:mx-0 order-[-1] md:order-none">
         <div className="hero-photo-clip relative w-full">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/bernardpng.png"
             alt="Bernard C. Mangulabnan"
@@ -112,6 +113,10 @@ export default function Hero() {
           />
         </div>
         <div className="hero-photo-glow absolute bottom-[-30px] left-1/2 -translate-x-1/2 w-[180px] h-[40px] hero-glow-gradient rounded-full animate-float blur-[8px]"></div>
+      </div>
+      */}
+      <div className="hero-visual flex-shrink-0 w-full md:w-auto mt-10 md:mt-0">
+        <HeroCodeCard />
       </div>
     </section>
   );
