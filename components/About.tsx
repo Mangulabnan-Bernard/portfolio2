@@ -59,8 +59,8 @@ export default function About({ summary = false }: AboutProps) {
           <AboutPhotos />
           <div className="about-text">
             <p className="text-text-2 mb-6 text-[0.95rem] leading-[1.9]">
-              I&apos;m a Web Developer from San Luis, Pampanga, Philippines. I build user-friendly,
-              visually appealing websites and web apps that are fast, polished, and easy to use.
+              I&apos;m a Full Stack Developer &amp; DevOps practitioner from San Luis, Pampanga, Philippines. I build
+              user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
             </p>
             <div className="flex flex-col gap-2.5 mb-7">
               {HIGHLIGHTS.slice(0, 4).map((item) => (
@@ -90,7 +90,7 @@ export default function About({ summary = false }: AboutProps) {
         <RevealSection className="about-grid grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div className="about-text">
             <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
-              I&apos;m a Web Developer from San Luis, Pampanga, Philippines. I build user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
+              I&apos;m a Web &amp; Mobile Developer from San Luis, Pampanga, Philippines. I build user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
             </p>
             <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
               Proficient in HTML5, CSS3, JavaScript, React, Next.js, Node.js, and TypeScript. I also work with mobile development tools like Flutter and Dart, and back-end systems using PostgreSQL, Prisma, MySQL, and PHP.

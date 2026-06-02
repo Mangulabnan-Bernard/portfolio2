@@ -3,9 +3,14 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import HeroCodeCard from '@/components/ui/HeroCodeCard';
+import { SKILL_CATEGORIES } from '@/components/Skills';
+import { PROJECTS } from '@/lib/projects';
+
+const PROJECT_COUNT = PROJECTS.length;
+const SKILL_COUNT = SKILL_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
 
 const ROLES = [
-  'Web Developer_',
+  'Full Stack & Mobile Developer_',
   'React · Next.js · TypeScript_',
   'Node.js · Tailwind CSS · AI Tools_',
   'Fast, polished, user-friendly products_',
@@ -63,7 +68,7 @@ export default function Hero() {
           <span className="cursor inline-block w-[2px] h-1em bg-teal vertical-align-middle animate-blink ml-[2px]"></span>
         </div>
         <p className="hero-desc max-w-[580px] text-text-2 text-[1rem] leading-[1.8] mb-10">
-          Web Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.
+          Full Stack Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.
         </p>
         <div className="hero-actions flex gap-4 flex-wrap mb-16">
           <Link href="/projects" className="btn-primary font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-teal text-bg border-none rounded-[8px] cursor-pointer no-underline font-bold transition-all hover:bg-teal-hover hover:-translate-y-0.5 inline-block">
@@ -87,11 +92,11 @@ export default function Hero() {
             <div className="stat-label text-[12px] text-muted mt-1">Years Experience</div>
           </div>
           <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">5+</div>
+            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">{PROJECT_COUNT}</div>
             <div className="stat-label text-[12px] text-muted mt-1">Projects Shipped</div>
           </div>
           <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">25+</div>
+            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">{SKILL_COUNT}</div>
             <div className="stat-label text-[12px] text-muted mt-1">Technologies</div>
           </div>
           <div className="stat-item">

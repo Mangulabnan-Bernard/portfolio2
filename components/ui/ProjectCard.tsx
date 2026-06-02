@@ -55,6 +55,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         image={project.image}
         liveUrl={live?.href}
         collage={project.featured ? project.images : undefined}
+        hideTitle
         className={project.featured ? 'h-56 md:h-64' : 'h-44'}
       />
       <div className="flex flex-col flex-1 p-7">

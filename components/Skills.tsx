@@ -22,7 +22,7 @@ type SkillCategory = {
 
 // `slug` is a Simple Icons slug (https://simpleicons.org). Skills without a
 // brand logo (concepts, methodologies) omit it and render a monogram instead.
-const SKILL_CATEGORIES: SkillCategory[] = [
+export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     key: 'frontend',
     icon: '🖥️',
@@ -46,6 +46,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     items: [
       { name: 'Flutter', slug: 'flutter' },
       { name: 'Dart', slug: 'dart' },
+      { name: 'Android & iOS' },
       { name: 'Cross-Platform' },
       { name: 'Mobile UI/UX' },
       { name: 'REST API' },
@@ -74,6 +75,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'ChatGPT', slug: 'openai' },
       { name: 'Cursor' },
       { name: 'Windsurf' },
+      { name: 'TensorFlow', slug: 'tensorflow' },
     ],
   },
   {

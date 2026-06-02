@@ -14,7 +14,6 @@ const EXPERIENCE_ITEMS = [
     company: 'Independent · Remote',
     bullets: [
       'Developed custom websites and web apps from design to deployment using Next.js, Tailwind CSS, and AI tools.',
-      'Built user-focused interfaces and optimized performance on every project.',
     ],
   },
   {
@@ -22,9 +21,9 @@ const EXPERIENCE_ITEMS = [
     role: 'Part-Time Web Developer',
     company: 'AP Global IT Solutions Inc · Antipolo (Hybrid)',
     bullets: [
-      'Maintained internal systems, handled updates, bug fixes, and data management.',
-      'Documented new features and supported team workflows for future improvements.',
+      'Maintained internal systems, handled updates, bug fixes, and data management; documented new features.',
       'Conducted training sessions teaching Flutter and Dart fundamentals to upskill team members.',
+      'Created website templates for various occasions such as birthdays, events, RSVPs, and more.',
     ],
   },
   {
@@ -33,8 +32,7 @@ const EXPERIENCE_ITEMS = [
     company: 'AP Global IT Solutions Inc · Antipolo (Onsite)',
     bullets: [
       'Analyzed system architecture and rebuilt a functional replica using Next.js with synthetic test data.',
-      'Documented system workflows to help the team onboard future changes more quickly.',
-      'Taught Next.js fundamentals to fellow interns and collaborated on hands-on learning tasks.',
+      'Documented system workflows and taught Next.js fundamentals to fellow interns.',
     ],
   },
 ];

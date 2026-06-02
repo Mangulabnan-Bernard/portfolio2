@@ -30,9 +30,10 @@ export const PROJECTS: Project[] = [
     title: 'Smart Grow – AI Crop Health Monitor',
     description:
       'A Flutter mobile app that diagnoses Tomato, Red Onion, and Garlic crops with machine learning from photos. Tracks health over 7 days and gives actionable guidance for growers. Evaluated using Accuracy, Precision, Recall, and F1-Score, with app quality assessed against ISO/IEC 25010.',
-    tech: ['Flutter', 'Machine Learning', 'TensorFlow Lite', 'Dart', 'AI', 'ISO/IEC 25010'],
+    tech: ['Flutter', 'Dart', 'Android & iOS', 'Machine Learning', 'TensorFlow'],
     accent: '#22c55e',
     category: 'mobile',
+    image: '/projects/smartgrow1.png',
     images: [
       '/projects/smartgrow1.png',
       '/projects/smartgrow2.png',
@@ -55,6 +56,7 @@ export const PROJECTS: Project[] = [
     tech: ['Flutter', 'Dart', 'Riverpod', 'GoRouter', 'Mobile', 'Web'],
     accent: '#fb7185',
     category: 'mobile',
+    image: '/projects/ulam1.png',
     images: [
       '/projects/ulam1.png',
       '/projects/ulam2.png',
@@ -65,12 +67,12 @@ export const PROJECTS: Project[] = [
     ],
     links: [
       { type: 'soon', label: 'Live preview coming soon' },
-      { type: 'soon', label: 'GitHub coming soon' },
+      { type: 'github', href: GITHUB_REPOS.anongUlam },
     ],
   },
   {
     badge: 'Web Platform · AI',
-    title: 'RentHuman — AI + Human Task Platform',
+    title: 'RentAHuman — AI + Human Task Platform',
     description:
       'A Next.js + React + Tailwind marketing and app shell for a hire-humans-for-AI-tasks platform: browse agents, post and browse bounties, dashboards, API docs, and role-based access. Built to shape product UX and flows ahead of wiring up production database, auth, payments, and API.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript', 'Vercel'],
@@ -86,7 +88,7 @@ export const PROJECTS: Project[] = [
     title: 'All4Home — Home Services Platform',
     description:
       'A marketplace where users can browse, book, and pay for home services (cleaning, electrical, grooming, and more). Providers can list their services; customers book easily from any device.',
-    tech: ['Next.js', 'React', 'Tailwind CSS', 'Node.js'],
+    tech: ['Next.js', 'Tailwind CSS'],
     accent: '#3b82f6',
     category: 'web',
     links: [{ type: 'soon', label: 'GitHub coming soon' }],
@@ -95,8 +97,8 @@ export const PROJECTS: Project[] = [
     badge: 'Web Platform',
     title: 'Tourist Spots Platform',
     description:
-      'A discovery site that showcases tourist spots around Pampanga with details and photos. Built with Next.js and Drizzle ORM, using UploadThing for image hosting and deployed on Vercel.',
-    tech: ['Next.js', 'Drizzle ORM', 'UploadThing', 'Tailwind CSS', 'Vercel'],
+      'A discovery site that showcases tourist spots around Pampanga with details and photos. Built with Next.js and Prisma ORM, using UploadThing for image hosting and deployed on Vercel.',
+    tech: ['Next.js', 'Prisma ORM', 'UploadThing', 'Tailwind CSS', 'Vercel'],
     accent: '#f59e0b',
     category: 'web',
     links: [
@@ -109,7 +111,7 @@ export const PROJECTS: Project[] = [
     title: 'ATM Go – Mobile Banking App',
     description:
       'A mobile banking app built with Flutter and Dart. Provides money transfers, account management, secure login, and a clean cross-device UI.',
-    tech: ['Flutter', 'Dart', 'Mobile Banking', 'UI/UX'],
+    tech: ['Flutter', 'Dart', 'Android & iOS'],
     accent: '#06b6d4',
     category: 'mobile',
     links: [
@@ -120,12 +122,13 @@ export const PROJECTS: Project[] = [
     badge: 'Gov · Web App',
     title: 'Barangay Incident & Complaint Report System',
     description:
-      'Replaced paper logbooks with a web system for barangay staff to manage incident reports digitally. Built with PHP, session-based auth, and tested on XAMPP.',
-    tech: ['PHP', 'MySQL', 'Bootstrap', 'XAMPP'],
+      'A Next.js 16 full-stack app (App Router, TypeScript) that replaces paper logbooks with a digital workflow for barangay staff to file and manage incident reports. Tailwind UI, Prisma + MySQL data layer, and JWT-cookie + bcrypt auth — the backend folded into Next.js route handlers, so it runs as one app instead of two.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'MySQL', 'JWT Auth'],
     accent: '#ef4444',
     category: 'web',
     links: [
-      { type: 'github', href: GITHUB_REPOS.pos },
+      { type: 'live', href: PROJECT_URLS.barangay },
+      { type: 'github', href: GITHUB_REPOS.barangay },
     ],
   },
 ];

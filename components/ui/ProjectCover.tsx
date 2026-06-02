@@ -13,6 +13,10 @@ type ProjectCoverProps = {
   liveUrl?: string;
   /** Screenshots to fan out as tilted phones on the cover (mobile projects). */
   collage?: string[];
+  /** Hide the gradient-fallback title (when the caller renders its own). */
+  hideTitle?: boolean;
+  /** Hide the corner badge (for small thumbnails). */
+  hideBadge?: boolean;
   className?: string;
 };
 
@@ -52,6 +56,8 @@ export default function ProjectCover({
   image,
   liveUrl,
   collage,
+  hideTitle = false,
+  hideBadge = false,
   className = '',
 }: ProjectCoverProps) {
   const [failed, setFailed] = useState(false);
@@ -131,18 +137,22 @@ export default function ProjectCover({
               backgroundSize: '22px 22px',
             }}
           />
-          <span className="absolute bottom-3 left-4 right-4 z-10 font-mono text-[15px] font-bold text-text/85 leading-tight">
-            {title}
-          </span>
+          {!hideTitle && (
+            <span className="absolute bottom-3 left-4 right-4 z-10 font-mono text-[15px] font-bold text-text/85 leading-tight">
+              {title}
+            </span>
+          )}
         </>
       )}
 
-      <span
-        className="absolute top-3 left-3 z-30 font-mono text-[9px] tracking-[0.15em] px-2 py-1 rounded-[20px] uppercase backdrop-blur-sm"
-        style={{ background: `${accent}24`, border: `1px solid ${accent}45`, color: accent }}
-      >
-        {badge}
-      </span>
+      {!hideBadge && (
+        <span
+          className="absolute top-3 left-3 z-30 font-mono text-[9px] tracking-[0.15em] px-2 py-1 rounded-[20px] uppercase backdrop-blur-sm"
+          style={{ background: `${accent}24`, border: `1px solid ${accent}45`, color: accent }}
+        >
+          {badge}
+        </span>
+      )}
     </div>
   );
 }

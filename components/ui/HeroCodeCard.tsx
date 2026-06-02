@@ -23,7 +23,7 @@ const Pu = ({ children }: { children: React.ReactNode }) => <span style={{ color
 const LINES: React.ReactNode[] = [
   <><K>const</K> <V>developer</V> <Pu>{'= {'}</Pu></>,
   <>{'  '}<P>name</P><Pu>:</Pu> <S>{"'Bernard C. Mangulabnan'"}</S><Pu>,</Pu></>,
-  <>{'  '}<P>role</P><Pu>:</Pu> <S>{"'Web Developer'"}</S><Pu>,</Pu></>,
+  <>{'  '}<P>role</P><Pu>:</Pu> <S>{"'Full Stack Developer'"}</S><Pu>,</Pu></>,
   <>{'  '}<P>location</P><Pu>:</Pu> <S>{"'Pampanga, PH'"}</S><Pu>,</Pu></>,
   <>{'  '}<P>stack</P><Pu>:</Pu> <Pu>[</Pu><S>{"'Next.js'"}</S><Pu>,</Pu> <S>{"'React'"}</S><Pu>,</Pu></>,
   <>{'         '}<S>{"'TypeScript'"}</S><Pu>,</Pu> <S>{"'Flutter'"}</S><Pu>],</Pu></>,

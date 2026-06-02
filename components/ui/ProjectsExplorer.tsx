@@ -7,7 +7,7 @@ import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
 import { PROJECTS, type Project, type ProjectLink } from '@/lib/projects';
 
 type FilterId = 'all' | 'web' | 'mobile';
-type LayoutId = 'explorer' | 'flip' | 'spotlight' | 'list' | 'story';
+type LayoutId = 'explorer' | 'compact' | 'spotlight' | 'list' | 'story';
 
 const FILTERS: { id: FilterId; label: string }[] = [
   { id: 'all', label: 'All' },
@@ -17,29 +17,29 @@ const FILTERS: { id: FilterId; label: string }[] = [
 
 const LAYOUTS: { id: LayoutId; label: string }[] = [
   { id: 'explorer', label: 'Explorer' },
-  { id: 'flip', label: 'Flip' },
+  { id: 'compact', label: 'Compact' },
   { id: 'spotlight', label: 'Spotlight' },
   { id: 'list', label: 'List' },
   { id: 'story', label: 'Story' },
 ];
 
-function renderLink(link: ProjectLink) {
+function renderLink(link: ProjectLink, i: number) {
   if (link.type === 'soon') {
     return (
-      <span key={link.label} className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 border border-border text-muted rounded-[6px] opacity-70">
+      <span key={i} className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 border border-border text-muted rounded-[6px] opacity-70">
         {link.label}
       </span>
     );
   }
   if (link.type === 'live') {
     return (
-      <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 bg-teal/8 border border-teal-3 text-teal no-underline rounded-[6px] transition-colors hover:bg-teal/15">
+      <a key={i} href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 bg-teal/8 border border-teal-3 text-teal no-underline rounded-[6px] transition-colors hover:bg-teal/15">
         {link.label ?? '↗ Live Site'}
       </a>
     );
   }
   return (
-    <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 border border-border text-text-2 no-underline rounded-[6px] transition-colors hover:border-teal-3 hover:text-teal">
+    <a key={i} href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 border border-border text-text-2 no-underline rounded-[6px] transition-colors hover:border-teal-3 hover:text-teal">
       GitHub
     </a>
   );
@@ -84,9 +84,9 @@ function LayoutIcon({ id }: { id: LayoutId }) {
       return (
         <svg {...common}><rect x="1.5" y="2.5" width="4.5" height="11" rx="1" /><rect x="8" y="2.5" width="6.5" height="11" rx="1" /></svg>
       );
-    case 'flip':
+    case 'compact':
       return (
-        <svg {...common}><rect x="1.5" y="1.5" width="13" height="13" rx="2" /><path d="M10.5 6.6a3 3 0 1 0 .7 2.1" /><path d="M10.9 4.4v2.4H8.6" /></svg>
+        <svg {...common}><rect x="1.5" y="2" width="4.5" height="4.5" rx="1" /><path d="M7.5 3.2h7" /><path d="M7.5 5.4h5" /><rect x="1.5" y="9.5" width="4.5" height="4.5" rx="1" /><path d="M7.5 10.7h7" /><path d="M7.5 12.9h5" /></svg>
       );
     case 'spotlight':
       return (
@@ -155,7 +155,7 @@ export default function ProjectsExplorer() {
       {/* Layout */}
       <div key={layout} className="animate-fade">
         {layout === 'explorer' && <ExplorerLayout projects={projects} />}
-        {layout === 'flip' && <FlipLayout projects={projects} />}
+        {layout === 'compact' && <CompactLayout projects={projects} />}
         {layout === 'spotlight' && <SpotlightLayout projects={projects} />}
         {layout === 'list' && <HoverListLayout projects={projects} />}
         {layout === 'story' && <StoryLayout projects={projects} />}
@@ -198,7 +198,7 @@ function ExplorerLayout({ projects }: { projects: Project[] }) {
       </div>
       <div className="lg:sticky lg:top-24">
         <div key={active.title} className="animate-fade bg-surface border border-border rounded-[16px] overflow-hidden">
-          <ProjectCover title={active.title} badge={active.badge} accent={active.accent} image={active.image} liveUrl={live?.href} collage={active.images} className="h-60 md:h-80" />
+          <ProjectCover title={active.title} badge={active.badge} accent={active.accent} image={active.image} liveUrl={live?.href} collage={active.images} hideTitle className="h-60 md:h-80" />
           <div className="p-6 md:p-8">
             <h3 className="font-mono text-[1.4rem] md:text-[1.6rem] font-bold text-text mb-4">{active.title}</h3>
             <p className="text-text-2 text-[0.95rem] leading-[1.8] mb-6">{active.description}</p>
@@ -211,57 +211,36 @@ function ExplorerLayout({ projects }: { projects: Project[] }) {
   );
 }
 
-/* 2) Flip — cover tiles that flip to reveal details (tap the ⓘ) */
-function FlipLayout({ projects }: { projects: Project[] }) {
-  const [flipped, setFlipped] = useState<string | null>(null);
+/* 2) Compact — horizontal cards: thumbnail + details (no overlap) */
+function CompactLayout({ projects }: { projects: Project[] }) {
   const live = (p: Project) => p.links.find((l): l is Extract<ProjectLink, { type: 'live' }> => l.type === 'live');
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {projects.map((p) => {
-        const isFlipped = flipped === p.title;
-        return (
-          <div key={p.title} className="h-[340px] [perspective:1200px]">
-            <div
-              className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d]"
-              style={{ transform: isFlipped ? 'rotateY(180deg)' : undefined }}
-            >
-              {/* Front */}
-              <div className="absolute inset-0 [backface-visibility:hidden] rounded-[16px] overflow-hidden border border-border">
-                <ProjectCover title={p.title} badge={p.badge} accent={p.accent} image={p.image} liveUrl={live(p)?.href} className="absolute inset-0 w-full h-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/25 to-transparent" />
-                <button
-                  type="button"
-                  onClick={() => setFlipped(p.title)}
-                  aria-label="Flip for details"
-                  className="absolute top-3 right-3 z-10 w-8 h-8 grid place-items-center rounded-full bg-bg/60 border border-border text-text-2 text-[13px] cursor-pointer transition-colors hover:text-teal hover:border-teal-3 backdrop-blur-sm"
-                >
-                  ⓘ
-                </button>
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <h3 className="font-mono text-[14px] font-bold text-text mb-2">{p.title}</h3>
-                  <LinksRow project={p} />
-                </div>
-              </div>
-
-              {/* Back */}
-              <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-[16px] border border-border bg-surface p-5 flex flex-col">
-                <div className="font-mono text-[9px] tracking-[0.15em] uppercase mb-2" style={{ color: p.accent }}>{p.badge}</div>
-                <h3 className="font-mono text-[15px] font-bold text-text mb-2">{p.title}</h3>
-                <p className="text-text-2 text-[12px] leading-[1.65] mb-3 flex-1 overflow-hidden">{p.description}</p>
-                <div className="mb-3"><TechTags tech={p.tech.slice(0, 4)} /></div>
-                <button
-                  type="button"
-                  onClick={() => setFlipped(null)}
-                  className="self-start font-mono text-[10px] tracking-[0.08em] text-teal cursor-pointer hover:underline"
-                >
-                  ← Back
-                </button>
-              </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      {projects.map((p) => (
+        <div
+          key={p.title}
+          className="group flex gap-4 min-h-[150px] bg-surface border border-border rounded-[14px] p-4 transition-colors hover:border-teal-3"
+        >
+          <div className="relative w-[120px] sm:w-[150px] shrink-0 rounded-[10px] overflow-hidden border border-border">
+            <ProjectCover
+              title={p.title}
+              badge={p.badge}
+              accent={p.accent}
+              image={p.image}
+              liveUrl={live(p)?.href}
+              hideTitle
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
+          <div className="min-w-0 flex flex-col py-1">
+            <h3 className="font-mono text-[14px] font-bold text-text mb-1.5 leading-snug">{p.title}</h3>
+            <p className="text-text-2 text-[12px] leading-[1.6] mb-3 line-clamp-2">{p.description}</p>
+            <div className="mt-auto">
+              <LinksRow project={p} />
             </div>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }
@@ -283,6 +262,7 @@ function SpotlightLayout({ projects }: { projects: Project[] }) {
           image={feature.image}
           liveUrl={live(feature)?.href}
           collage={feature.images}
+          hideTitle
           className="h-64 md:h-auto md:min-h-[320px]"
         />
         <div className="p-7 md:p-9 flex flex-col justify-center">
@@ -354,7 +334,7 @@ function StoryLayout({ projects }: { projects: Project[] }) {
       {projects.map((p, i) => (
         <div key={p.title} className="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-surface border border-border rounded-[16px] overflow-hidden p-5 md:p-7">
           <div className={`rounded-[12px] overflow-hidden ${i % 2 ? 'md:order-2' : ''}`}>
-            <ProjectCover title={p.title} badge={p.badge} accent={p.accent} image={p.image} liveUrl={live(p)?.href} collage={p.images} className="h-56 md:h-72" />
+            <ProjectCover title={p.title} badge={p.badge} accent={p.accent} image={p.image} liveUrl={live(p)?.href} collage={p.images} hideTitle className="h-56 md:h-72" />
           </div>
           <div>
             <div className="font-mono text-[10px] tracking-[0.18em] uppercase mb-3" style={{ color: p.accent }}>{p.badge}</div>
