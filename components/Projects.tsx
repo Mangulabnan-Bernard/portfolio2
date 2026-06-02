@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import RevealSection from '@/components/RevealSection';
 import ProjectCard from '@/components/ui/ProjectCard';
@@ -9,14 +12,44 @@ type ProjectsProps = {
   summary?: boolean;
 };
 
+type ProjectFilter = 'all' | 'web' | 'mobile';
+
+const FILTERS: { id: ProjectFilter; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'web', label: 'Web' },
+  { id: 'mobile', label: 'Mobile app' },
+];
+
 export default function Projects({ summary = false }: ProjectsProps) {
+  const [filter, setFilter] = useState<ProjectFilter>('all');
   const visibleProjects = summary ? PROJECTS.slice(0, 3) : PROJECTS;
+  const filteredProjects = summary
+    ? visibleProjects
+    : visibleProjects.filter((project) => filter === 'all' || project.category === filter);
 
   return (
     <Section id="projects">
       <SectionHeader label={summary ? 'Selected Projects' : 'Portfolio'} title="Notable Projects_" />
+      {!summary && (
+        <div className="flex flex-wrap items-center gap-3 mb-8">
+          {FILTERS.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setFilter(item.id)}
+              className={`rounded-full border px-4 py-2 text-[13px] font-semibold transition-all ${
+                filter === item.id
+                  ? 'border-teal bg-teal text-bg'
+                  : 'border-border bg-surface text-text-2 hover:border-teal/50'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
       <RevealSection className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleProjects.map((project) => (
+        {filteredProjects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
       </RevealSection>
