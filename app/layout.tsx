@@ -3,6 +3,7 @@ import { Sora, JetBrains_Mono } from "next/font/google";
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Pwa from '@/components/Pwa';
+import { SITE_URL } from '@/lib/site';
 import "./globals.css";
 
 const sora = Sora({
@@ -17,9 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["300", "400", "600", "700"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+const siteUrl = SITE_URL;
 
 const title = "Bernard C. Mangulabnan — Web Developer | Next.js, React, TypeScript";
 const description =

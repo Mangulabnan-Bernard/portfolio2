@@ -31,17 +31,17 @@ export const PROJECTS: Project[] = [
     tech: ['Flutter', 'Machine Learning', 'TensorFlow Lite', 'Dart', 'AI', 'ISO/IEC 25010'],
     accent: '#22c55e',
     images: [
-      '/projects/smartgrow-1.png',
-      '/projects/smartgrow-2.png',
-      '/projects/smartgrow-3.png',
-      '/projects/smartgrow-4.png',
-      '/projects/smartgrow-5.png',
-      '/projects/smartgrow-6.png',
-      '/projects/smartgrow-7.png',
+      '/projects/smartgrow1.png',
+      '/projects/smartgrow2.png',
+      '/projects/smartgrow3.png',
+      '/projects/smartgrow4.png',
+      '/projects/smartgrow5.png',
+      '/projects/smartgrow6.png',
+      '/projects/smartgrow7.png',
     ],
     links: [
       { type: 'soon', label: 'Demo coming soon' },
-      { type: 'github', href: GITHUB_REPOS.atmGo },
+      { type: 'soon', label: 'GitHub coming soon' },
     ],
   },
   {
@@ -84,7 +84,10 @@ export const PROJECTS: Project[] = [
       'A mobile banking app built with Flutter and Dart. Provides money transfers, account management, secure login, and a clean cross-device UI.',
     tech: ['Flutter', 'Dart', 'Mobile Banking', 'UI/UX'],
     accent: '#06b6d4',
-    links: [{ type: 'soon', label: 'Case study coming soon' }],
+    links: [
+      { type: 'soon', label: 'Case study coming soon' },
+      { type: 'github', href: GITHUB_REPOS.atmGo },
+    ],
   },
   {
     badge: 'Gov · Web App',

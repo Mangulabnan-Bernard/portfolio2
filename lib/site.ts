@@ -1,3 +1,9 @@
+// Canonical production URL. Override locally with NEXT_PUBLIC_SITE_URL in
+// .env.local (e.g. http://localhost:3000) if you need dev-accurate metadata.
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.bernardmangulabnan.com'
+).replace(/\/$/, '');
+
 export const GITHUB_URL = 'https://github.com/Mangulabnan-Bernard';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/bernard-mangulabnan';
 

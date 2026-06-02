@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 // Resend only delivers to the account's own address until a domain is verified.
-const TO_EMAIL = 'adaiki287@gmail.com';
+const TO_EMAIL = 'mangulabnan.bernard321@gmail.com';
 // Resend's shared sender works out of the box. Swap for an address on your
 // own verified domain (e.g. contact@yourdomain.com) once you add one in Resend.
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? 'Portfolio <onboarding@resend.dev>';
