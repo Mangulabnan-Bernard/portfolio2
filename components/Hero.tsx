@@ -78,7 +78,7 @@ export default function Hero() {
             Get In Touch
           </Link>
           <a
-            href="/BernardMangulabnan_Resume.pdf"
+            href="/BernardMangulabnan.pdf"
             download
             className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-flex items-center gap-2"
           >

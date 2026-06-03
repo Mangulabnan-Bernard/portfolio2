@@ -54,7 +54,7 @@ export default function Contact({ summary = false }: ContactProps) {
                 <span className="text-teal">Available for new projects</span>
               </ContactItem>
               <a
-                href="/BernardMangulabnan_Resume.pdf"
+                href="/BernardMangulabnan.pdf"
                 download
                 className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.1em] px-6 py-3 bg-teal text-bg border-none rounded-[8px] no-underline font-bold transition-all hover:bg-teal-hover"
               >

@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     category: 'web',
     links: [
       { type: 'live', href: PROJECT_URLS.devpath },
-      { type: 'soon', label: 'GitHub coming soon' },
+      { type: 'github', href: GITHUB_REPOS.devpath },
     ],
   },
   {
@@ -106,7 +106,7 @@ export const PROJECTS: Project[] = [
     category: 'web',
     links: [
       { type: 'live', href: PROJECT_URLS.all4home },
-      { type: 'soon', label: 'GitHub coming soon' },
+      { type: 'github', href: GITHUB_REPOS.all4home },
     ],
   },
   {

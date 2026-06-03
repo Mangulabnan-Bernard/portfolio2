@@ -21,4 +21,6 @@ export const GITHUB_REPOS = {
   atmGo: `${GITHUB_URL}/ATMGo`,
   anongUlam: `${GITHUB_URL}/Anong-Ulam-Today`,
   barangay: `${GITHUB_URL}/Barangay-Incident-Complaint-Report-System`,
+  devpath: `${GITHUB_URL}/devpath-hub`,
+  all4home: `${GITHUB_URL}/all4homev2`,
 } as const;
