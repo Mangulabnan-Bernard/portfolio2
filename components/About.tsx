@@ -11,7 +11,7 @@ type AboutProps = {
 const HIGHLIGHTS = [
   { icon: 'cap', title: 'CS Student', subtitle: 'Holy Cross College · 2022–2026' },
   { icon: 'stack', title: 'Full Stack Developer', subtitle: 'React · Next.js · Node.js · TypeScript' },
-  { icon: 'mobile', title: 'Mobile App Developer', subtitle: 'Flutter · React Native' },
+  { icon: 'mobile', title: 'Mobile App Developer', subtitle: 'Flutter · Cross-Platform' },
   { icon: 'ai', title: 'AI-Augmented Developer', subtitle: 'Claude · Cursor · Windsurf · ChatGPT' },
   { icon: 'cloud', title: 'Cloud & DevOps', subtitle: 'Vercel · AWS · Hostinger · Git' },
 ];
