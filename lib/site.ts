@@ -11,6 +11,7 @@ export const PROJECT_URLS = {
   rentahuman: 'https://rentahuman-web.vercel.app/',
   touristspots: 'https://touristspots-nine.vercel.app/',
   barangay: 'https://www.barangay-incident-complaint.bernardmangulabnan.com/',
+  devpath: 'https://www.devpath.bernardmangulabnan.com/',
 } as const;
 
 export const GITHUB_REPOS = {

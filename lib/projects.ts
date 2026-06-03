@@ -71,6 +71,19 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    badge: 'EdTech · Web App',
+    title: 'DevPath.hub — Guided Learning Platform',
+    description:
+      'A guided, interactive platform to learn a full tech stack from absolute scratch — every command explained, a built-in error solver, an "Explain Like I\'m 5" mode, project-based tracks, and progress saved to your account. Built as a Next.js full-stack app with Prisma, PostgreSQL, and Auth.js.',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'PostgreSQL', 'Auth.js', 'anime.js', 'Vercel'],
+    accent: '#6366f1',
+    category: 'web',
+    links: [
+      { type: 'live', href: PROJECT_URLS.devpath },
+      { type: 'soon', label: 'GitHub coming soon' },
+    ],
+  },
+  {
     badge: 'Web Platform · AI',
     title: 'RentAHuman — AI + Human Task Platform',
     description:
