@@ -12,6 +12,7 @@ export const PROJECT_URLS = {
   touristspots: 'https://touristspots-nine.vercel.app/',
   barangay: 'https://www.barangay-incident-complaint.bernardmangulabnan.com/',
   devpath: 'https://www.devpath.bernardmangulabnan.com/',
+  all4home: 'https://www.all4homev2.bernardmangulabnan.com/',
 } as const;
 
 export const GITHUB_REPOS = {

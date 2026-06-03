@@ -104,7 +104,10 @@ export const PROJECTS: Project[] = [
     tech: ['Next.js', 'Tailwind CSS'],
     accent: '#3b82f6',
     category: 'web',
-    links: [{ type: 'soon', label: 'GitHub coming soon' }],
+    links: [
+      { type: 'live', href: PROJECT_URLS.all4home },
+      { type: 'soon', label: 'GitHub coming soon' },
+    ],
   },
   {
     badge: 'Web Platform',
