@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = SITE_URL;
 
-const title = "Bernard C. Mangulabnan — Web Developer | Next.js, React, TypeScript";
+const title = "Bernard C. Mangulabnan — Full Stack Web and Mobile Developer | Next.js, React, TypeScript";
 const description =
-  "Web Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.";
+  "Full Stack Web and Mobile Developer passionate about building user-friendly, visually appealing websites and web apps. Proficient in HTML, CSS, JavaScript, React, Next.js, Node.js, and TypeScript.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

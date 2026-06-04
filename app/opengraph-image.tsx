@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 // Next.js auto-wires this as og:image and twitter:image for the whole site.
-export const alt = 'Bernard C. Mangulabnan — Web Developer';
+export const alt = 'Bernard C. Mangulabnan — Full Stack Web and Mobile Developer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -42,7 +42,7 @@ export default function OpengraphImage() {
           Bernard C.&nbsp;<span style={{ color: '#00e5a0' }}>Mangulabnan</span>
         </div>
         <div style={{ display: 'flex', fontSize: 34, color: '#8ab8a0', marginTop: 24 }}>
-          Web Developer — Next.js · React · TypeScript
+          Full Stack Web and Mobile Developer — Next.js · React · TypeScript
         </div>
         <div
           style={{

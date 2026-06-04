@@ -6,9 +6,7 @@ import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import SectionDivider from '@/components/ui/SectionDivider';
 
-/**
- * Home page — summary version of each main section.
- */
+// Home page — landing with summary sections; the dock nav lives in the layout.
 export default function Home() {
   return (
     <main className="relative z-10 pt-[60px]">

@@ -18,6 +18,7 @@ export default function Contact({ summary = false }: ContactProps) {
     <Section id="contact">
       <SectionHeader
         label={summary ? 'Contact' : 'Get In Touch'}
+        number={summary ? '05' : undefined}
         title={summary ? "Let's Connect_" : "Let's Work Together_"}
       />
       <RevealSection className="contact-grid grid grid-cols-1 md:grid-cols-2 gap-16 items-start">

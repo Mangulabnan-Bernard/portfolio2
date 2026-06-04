@@ -2,10 +2,21 @@ import Link from 'next/link';
 import RevealSection from '@/components/RevealSection';
 import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
+import PhotoGallery from '@/components/ui/PhotoGallery';
+import { PROJECTS } from '@/lib/projects';
 
 type ExperienceProps = {
   summary?: boolean;
 };
+
+// Photos from the AP Global internship journey.
+const INTERN_PHOTOS = [
+  '/imgs/ex1.png',
+  '/imgs/ex2.jpg',
+  '/imgs/ex3.jpg',
+  '/imgs/ex4.jpg',
+  '/imgs/ex5.jpg',
+];
 
 const EXPERIENCE_ITEMS = [
   {
@@ -42,7 +53,7 @@ export default function Experience({ summary = false }: ExperienceProps) {
 
   return (
     <Section id="experience">
-      <SectionHeader label={summary ? 'Experience' : 'Work History'} title="Experience_" />
+      <SectionHeader label={summary ? 'Experience' : 'Work History'} number={summary ? '02' : undefined} title="Experience_" />
       <RevealSection className="exp-timeline flex flex-col gap-0">
         {visibleItems.map((item, index) => (
           <div key={item.role} className="exp-item grid grid-cols-1 md:grid-cols-[180px_1fr] gap-1.5 md:gap-8 relative pb-8 md:pb-10">
@@ -78,7 +89,7 @@ export default function Experience({ summary = false }: ExperienceProps) {
           {[
             {
               label: 'Projects Completed',
-              value: '5+',
+              value: `${PROJECTS.length}`,
             },
             {
               label: 'Client Satisfaction',
@@ -94,6 +105,13 @@ export default function Experience({ summary = false }: ExperienceProps) {
               <div className="text-text text-[1.1rem] font-semibold leading-[1.4]">{item.value}</div>
             </div>
           ))}
+        </RevealSection>
+      )}
+
+      {!summary && (
+        <RevealSection className="mt-12">
+          <div className="font-mono text-[11px] tracking-[0.18em] text-teal uppercase mb-4">Internship Journey</div>
+          <PhotoGallery images={INTERN_PHOTOS} label="Internship" />
         </RevealSection>
       )}
 

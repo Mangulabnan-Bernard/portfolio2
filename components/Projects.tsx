@@ -14,7 +14,7 @@ export default function Projects({ summary = false }: ProjectsProps) {
   if (summary) {
     return (
       <Section id="projects">
-        <SectionHeader label="Selected Projects" title="Notable Projects_" />
+        <SectionHeader label="Selected Projects" number="04" title="Notable Projects_" />
         <RevealSection>
           <ProjectsTeaser />
         </RevealSection>

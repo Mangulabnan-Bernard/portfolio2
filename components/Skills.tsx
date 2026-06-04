@@ -118,7 +118,7 @@ const ALL_SKILLS: Skill[] = SKILL_CATEGORIES.flatMap((c) => c.items);
 export default function Skills({ summary = false }: SkillsProps) {
   return (
     <Section id="skills">
-      <SectionHeader label={summary ? 'Skills' : 'Technical Skills'} title="My Stack_" />
+      <SectionHeader label={summary ? 'Skills' : 'Technical Skills'} number={summary ? '03' : undefined} title="My Stack_" />
 
       {summary ? (
         <>
