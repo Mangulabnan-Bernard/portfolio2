@@ -3,6 +3,7 @@ import { GITHUB_REPOS, PROJECT_URLS } from '@/lib/site';
 export type ProjectLink =
   | { type: 'live'; href: string; label?: string }
   | { type: 'github'; href: string }
+  | { type: 'download'; href: string; label?: string }
   | { type: 'soon'; label: string };
 
 export type Project = {
@@ -66,7 +67,7 @@ export const PROJECTS: Project[] = [
       '/projects/ulam6.png',
     ],
     links: [
-      { type: 'soon', label: 'Live preview coming soon' },
+      { type: 'download', href: '/anong-ulam-today.apk', label: '↓ Download APK' },
       { type: 'github', href: GITHUB_REPOS.anongUlam },
     ],
   },

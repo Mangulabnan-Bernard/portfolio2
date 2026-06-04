@@ -38,6 +38,13 @@ function renderLink(link: ProjectLink, i: number) {
       </a>
     );
   }
+  if (link.type === 'download') {
+    return (
+      <a key={i} href={link.href} download className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 bg-teal/8 border border-teal-3 text-teal no-underline rounded-[6px] transition-colors hover:bg-teal/15">
+        {link.label ?? '↓ Download'}
+      </a>
+    );
+  }
   return (
     <a key={i} href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 border border-border text-text-2 no-underline rounded-[6px] transition-colors hover:border-teal-3 hover:text-teal">
       GitHub
