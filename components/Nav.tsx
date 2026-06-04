@@ -18,8 +18,8 @@ const NAV: Item[] = [
 
 function Icon({ name }: { name: Item['icon'] }) {
   const c = {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
     viewBox: '0 0 20 20',
     fill: 'none',
     stroke: 'currentColor',
@@ -63,7 +63,7 @@ export default function Nav() {
       </Link>
 
       {/* Centered dock nav */}
-      <div className="hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="hidden md:flex items-center gap-3.5 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         {NAV.map((n) => {
           const isActive = pathname === n.href;
           return (
@@ -74,12 +74,12 @@ export default function Nav() {
               aria-current={isActive ? 'page' : undefined}
               aria-label={n.label}
               className={`group flex items-center gap-2 rounded-full transition-all duration-300 ease-out no-underline ${
-                isActive ? 'bg-teal text-bg px-3.5 py-2' : 'text-text-2 hover:text-teal px-2.5 py-2'
+                isActive ? 'bg-teal text-bg px-6 py-3' : 'text-text-2 hover:text-teal px-4 py-3'
               }`}
               style={isActive ? { boxShadow: '0 0 18px -5px var(--color-teal)' } : undefined}
             >
               <Icon name={n.icon} />
-              {isActive && <span className="font-mono text-[11px] tracking-[0.06em] font-bold">{n.label}</span>}
+              {isActive && <span className="font-mono text-[13px] tracking-[0.06em] font-bold">{n.label}</span>}
             </Link>
           );
         })}
