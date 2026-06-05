@@ -8,6 +8,34 @@ const SIZES = {
   lg: { box: 'w-16 h-16 rounded-[14px]', px: 36, text: 'text-[16px]' },
 } as const;
 
+// Maps a Simple Icons slug → devicon icon path ("folder/file" without extension).
+// Devicon (https://devicon.dev) ships full-color brand logos. Anything not listed
+// here (PWA, ChatGPT/OpenAI, Hostinger, AWS, …) falls back to Simple Icons.
+const DEVICON: Record<string, string> = {
+  html5: 'html5/html5-original',
+  css: 'css3/css3-original',
+  javascript: 'javascript/javascript-original',
+  typescript: 'typescript/typescript-original',
+  react: 'react/react-original',
+  nextdotjs: 'nextjs/nextjs-original',
+  tailwindcss: 'tailwindcss/tailwindcss-original',
+  flutter: 'flutter/flutter-original',
+  dart: 'dart/dart-original',
+  nodedotjs: 'nodejs/nodejs-original',
+  express: 'express/express-original',
+  prisma: 'prisma/prisma-original',
+  mysql: 'mysql/mysql-original',
+  php: 'php/php-original',
+  tensorflow: 'tensorflow/tensorflow-original',
+  git: 'git/git-original',
+  github: 'github/github-original',
+  vercel: 'vercel/vercel-original',
+};
+
+const deviconUrl = (path: string) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`;
+const simpleIconsUrl = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
+
 type TechIconProps = {
   /** Simple Icons slug, e.g. "nextdotjs". Omit for skills with no brand logo. */
   slug?: string;
@@ -21,25 +49,32 @@ function initials(name: string) {
 }
 
 /**
- * Renders a brand logo from the Simple Icons CDN inside a light tile so even
- * dark logos (Next.js, Vercel) stay visible on the dark theme. Falls back to
- * monogram initials when there's no slug or the icon fails to load.
+ * Renders a brand logo inside a light tile so even dark logos (Next.js, Vercel)
+ * stay visible on the dark theme. Tries devicon first, then the Simple Icons CDN,
+ * then falls back to monogram initials.
  */
 export default function TechIcon({ slug, name, size = 'sm' }: TechIconProps) {
-  const [failed, setFailed] = useState(false);
   const s = SIZES[size];
+
+  // Ordered list of logo URLs to try: devicon → Simple Icons.
+  const sources: string[] = [];
+  if (slug && DEVICON[slug]) sources.push(deviconUrl(DEVICON[slug]));
+  if (slug) sources.push(simpleIconsUrl(slug));
+
+  const [idx, setIdx] = useState(0);
+  const src = sources[idx];
 
   return (
     <span className={`grid place-items-center ${s.box} bg-white/95 shrink-0 shadow-sm ring-1 ring-black/5`}>
-      {slug && !failed ? (
+      {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={`https://cdn.simpleicons.org/${slug}`}
+          src={src}
           alt={`${name} logo`}
           width={s.px}
           height={s.px}
           loading="lazy"
-          onError={() => setFailed(true)}
+          onError={() => setIdx((i) => i + 1)}
           style={{ width: s.px, height: s.px }}
         />
       ) : (

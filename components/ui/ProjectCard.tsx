@@ -30,6 +30,13 @@ function renderLink(link: ProjectLink) {
       </a>
     );
   }
+  if (link.type === 'download') {
+    return (
+      <a key={link.href} className={linkLiveClass} href={link.href} download>
+        {link.label ?? '↓ Download'}
+      </a>
+    );
+  }
   return (
     <a key={link.href} className={linkClass} href={link.href} target="_blank" rel="noopener noreferrer">
       GitHub

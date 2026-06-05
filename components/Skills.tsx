@@ -46,14 +46,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     icon: '📱',
     title: 'Mobile',
     blurb:
-      'Cross-platform Android & iOS apps with Flutter and Dart — clean UI/UX backed by REST APIs and solid state management.',
+      'Cross-platform Android & iOS apps with Flutter and Dart — one clean codebase with a native feel and solid state management.',
     items: [
       { name: 'Flutter', slug: 'flutter' },
       { name: 'Dart', slug: 'dart' },
       { name: 'Android & iOS' },
       { name: 'Cross-Platform' },
-      { name: 'Mobile UI/UX' },
-      { name: 'REST API' },
       { name: 'State Mgmt' },
     ],
   },
@@ -62,11 +60,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     icon: '⚙️',
     title: 'Back-End & DB',
     blurb:
-      'APIs and data layers with Node.js and Express over PostgreSQL, Prisma, and MySQL.',
+      'APIs and data layers with Node.js and Express over Prisma and MySQL.',
     items: [
       { name: 'Node.js', slug: 'nodedotjs' },
       { name: 'Express.js', slug: 'express' },
-      { name: 'PostgreSQL', slug: 'postgresql' },
       { name: 'Prisma ORM', slug: 'prisma' },
       { name: 'MySQL', slug: 'mysql' },
       { name: 'PHP', slug: 'php' },
@@ -110,7 +107,6 @@ const TOOLKIT: Skill[] = [
   { name: 'Tailwind CSS', slug: 'tailwindcss' },
   { name: 'Node.js', slug: 'nodedotjs' },
   { name: 'Flutter', slug: 'flutter' },
-  { name: 'PostgreSQL', slug: 'postgresql' },
 ];
 
 const ALL_SKILLS: Skill[] = SKILL_CATEGORIES.flatMap((c) => c.items);

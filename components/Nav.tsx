@@ -16,10 +16,10 @@ const NAV: Item[] = [
   { href: '/contact', label: 'Contact', icon: 'mail' },
 ];
 
-function Icon({ name }: { name: Item['icon'] }) {
+function Icon({ name, size = 22 }: { name: Item['icon']; size?: number }) {
   const c = {
-    width: 22,
-    height: 22,
+    width: size,
+    height: size,
     viewBox: '0 0 20 20',
     fill: 'none',
     stroke: 'currentColor',
@@ -63,7 +63,7 @@ export default function Nav() {
       </Link>
 
       {/* Centered dock nav */}
-      <div className="hidden md:flex items-center gap-3.5 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="hidden lg:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         {NAV.map((n) => {
           const isActive = pathname === n.href;
           return (
@@ -72,14 +72,15 @@ export default function Nav() {
               href={n.href}
               onClick={handleNav(n.href)}
               aria-current={isActive ? 'page' : undefined}
-              aria-label={n.label}
-              className={`group flex items-center gap-2 rounded-full transition-all duration-300 ease-out no-underline ${
-                isActive ? 'bg-teal text-bg px-6 py-3' : 'text-text-2 hover:text-teal px-4 py-3'
+              className={`group flex items-center gap-2 rounded-full px-4 py-2.5 transition-all duration-300 ease-out no-underline ${
+                isActive ? 'bg-teal text-bg' : 'text-text-2 hover:text-teal'
               }`}
               style={isActive ? { boxShadow: '0 0 18px -5px var(--color-teal)' } : undefined}
             >
-              <Icon name={n.icon} />
-              {isActive && <span className="font-mono text-[13px] tracking-[0.06em] font-bold">{n.label}</span>}
+              <Icon name={n.icon} size={18} />
+              <span className={`font-mono text-[12.5px] tracking-[0.05em] ${isActive ? 'font-bold' : 'font-medium'}`}>
+                {n.label}
+              </span>
             </Link>
           );
         })}
@@ -105,8 +106,8 @@ export default function Nav() {
           id="nav-menu"
           className="absolute top-[66px] right-4 md:right-10 z-[110] bg-surface border border-border rounded-[12px] p-4 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] flex flex-col gap-3 min-w-[210px]"
         >
-          {/* Page links — mobile only (desktop has the centered nav) */}
-          <div className="md:hidden flex flex-col gap-1 pb-3 mb-1 border-b border-border">
+          {/* Page links — shown until the centered dock appears at lg */}
+          <div className="lg:hidden flex flex-col gap-1 pb-3 mb-1 border-b border-border">
             {NAV.map((n) => {
               const isActive = pathname === n.href;
               return (

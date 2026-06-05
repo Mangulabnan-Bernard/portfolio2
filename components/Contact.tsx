@@ -7,6 +7,11 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { GITHUB_URL, LINKEDIN_URL } from '@/lib/site';
 
 const EMAIL = 'mangulabnan.bernard321@gmail.com';
+// Opens the Gmail compose window with my address (and a starter subject/body) pre-filled.
+const GMAIL_COMPOSE =
+  `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}` +
+  `&su=${encodeURIComponent("Let's work together")}` +
+  `&body=${encodeURIComponent('Hi Bernard,\n\n')}`;
 const linkClass = 'text-teal-2 no-underline hover:text-teal';
 
 type ContactProps = {
@@ -27,7 +32,7 @@ export default function Contact({ summary = false }: ContactProps) {
             I&apos;m open to freelance projects and full-time opportunities. Whether you need a website, web app, or mobile app — let&apos;s build something polished together.
           </p>
           <ContactItem icon="✉️" label="Email">
-            <a href={`mailto:${EMAIL}`} className={linkClass}>
+            <a href={GMAIL_COMPOSE} target="_blank" rel="noopener noreferrer" className={linkClass}>
               {EMAIL}
             </a>
           </ContactItem>
@@ -71,10 +76,12 @@ export default function Contact({ summary = false }: ContactProps) {
         ) : (
           <div className="flex flex-col gap-5 justify-center">
             <p className="text-text-2 text-[0.95rem] leading-[1.8]">
-              Prefer email? Click the button below and your mail client will open with my address pre-filled.
+              Prefer email? Click the button below and Gmail will open in a new tab with my address pre-filled.
             </p>
             <a
-              href={`mailto:${EMAIL}`}
+              href={GMAIL_COMPOSE}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-teal text-bg border-none rounded-[8px] cursor-pointer no-underline font-bold transition-all hover:bg-teal-hover"
             >
               Email Me Directly
