@@ -72,13 +72,13 @@ export default function Nav() {
               href={n.href}
               onClick={handleNav(n.href)}
               aria-current={isActive ? 'page' : undefined}
-              className={`group flex items-center gap-2 rounded-full px-4 py-2.5 transition-all duration-300 ease-out no-underline ${
+              className={`group flex items-center gap-1.5 rounded-full px-3 py-2 transition-all duration-300 ease-out no-underline ${
                 isActive ? 'bg-teal text-bg' : 'text-text-2 hover:text-teal'
               }`}
-              style={isActive ? { boxShadow: '0 0 18px -5px var(--color-teal)' } : undefined}
+              style={isActive ? { boxShadow: '0 0 16px -6px var(--color-teal)' } : undefined}
             >
-              <Icon name={n.icon} size={18} />
-              <span className={`font-mono text-[12.5px] tracking-[0.05em] ${isActive ? 'font-bold' : 'font-medium'}`}>
+              <Icon name={n.icon} size={16} />
+              <span className={`font-mono text-[11.5px] tracking-[0.04em] ${isActive ? 'font-bold' : 'font-medium'}`}>
                 {n.label}
               </span>
             </Link>

@@ -204,6 +204,24 @@ html {
   animation: float 5s ease-in-out infinite;
 }
 
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.15); }
+}
+
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-55px, 45px) scale(0.9); }
+}
+
+.animate-drift-a {
+  animation: drift-a 16s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: drift-b 21s ease-in-out infinite;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
