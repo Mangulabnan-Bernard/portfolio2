@@ -10,10 +10,10 @@ const PROJECT_COUNT = PROJECTS.length;
 const SKILL_COUNT = SKILL_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
 
 const ROLES = [
-  'Full Stack Web and Mobile Developer_',
-  'React · Next.js · TypeScript_',
-  'Node.js · Tailwind CSS · AI Tools_',
-  'Fast, polished, user-friendly products_',
+  'Full Stack Web and Mobile Developer',
+  'React · Next.js · TypeScript',
+  'Node.js · Tailwind CSS · AI Tools',
+  'Fast, polished, user-friendly products',
 ] as const;
 
 export default function Hero() {
