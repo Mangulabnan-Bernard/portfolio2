@@ -4,7 +4,8 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.bernardmangulabnan.com'
 ).replace(/\/$/, '');
 
-export const GITHUB_URL = 'https://github.com/Mangulabnan-Bernard';
+export const GITHUB_USERNAME = 'Mangulabnan-Bernard';
+export const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/bernard-mangulabnan';
 
 export const PROJECT_URLS = {
