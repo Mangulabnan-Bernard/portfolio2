@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Pwa from '@/components/Pwa';
 import PostHogProvider from '@/components/PostHogProvider';
 import SecretTrigger from '@/components/SecretTrigger';
+import ScrollProgress from '@/components/ScrollProgress';
 import { SITE_URL } from '@/lib/site';
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className="min-h-screen">
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         <PostHogProvider>
+          <ScrollProgress />
           <Nav />
           {children}
           <Footer />
