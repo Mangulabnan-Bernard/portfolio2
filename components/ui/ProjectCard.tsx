@@ -1,4 +1,5 @@
-import type { Project, ProjectLink } from '@/lib/projects';
+import Link from 'next/link';
+import { projectSlug, type Project, type ProjectLink } from '@/lib/projects';
 import ProjectCover from '@/components/ui/ProjectCover';
 import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
 
@@ -79,6 +80,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         <div className="project-links flex gap-2 flex-wrap">
+          <Link
+            href={`/projects/${projectSlug(project)}`}
+            className="project-link font-mono text-[10px] tracking-[0.08em] px-3 py-1 bg-teal text-bg font-bold no-underline rounded-[6px] transition-colors hover:bg-teal-hover"
+          >
+            Case study →
+          </Link>
           {project.links.map(renderLink)}
           {project.images && project.images.length > 0 && (
             <ScreenshotGallery images={project.images} label={project.title} accent={project.accent} />

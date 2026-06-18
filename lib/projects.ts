@@ -24,6 +24,22 @@ export type Project = {
   category: 'web' | 'mobile';
 };
 
+/** URL-safe slug derived from a project title (used for /projects/[slug]). */
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function projectSlug(project: Project): string {
+  return slugify(project.title);
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return PROJECTS.find((p) => projectSlug(p) === slug);
+}
+
 export const PROJECTS: Project[] = [
   {
     featured: true,

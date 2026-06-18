@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import ProjectCard from '@/components/ui/ProjectCard';
 import ProjectCover from '@/components/ui/ProjectCover';
 import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
-import { PROJECTS, type Project, type ProjectLink } from '@/lib/projects';
+import { PROJECTS, projectSlug, type Project, type ProjectLink } from '@/lib/projects';
 
 type FilterId = 'all' | 'web' | 'mobile';
 type LayoutId = 'explorer' | 'compact' | 'spotlight' | 'list' | 'story';
@@ -55,6 +56,12 @@ function renderLink(link: ProjectLink, i: number) {
 function LinksRow({ project }: { project: Project }) {
   return (
     <div className="flex gap-2 flex-wrap">
+      <Link
+        href={`/projects/${projectSlug(project)}`}
+        className="font-mono text-[10px] tracking-[0.08em] px-3 py-1.5 bg-teal text-bg font-bold no-underline rounded-[6px] transition-colors hover:bg-teal-hover"
+      >
+        Case study →
+      </Link>
       {project.links.map(renderLink)}
       {project.images && project.images.length > 0 && (
         <ScreenshotGallery images={project.images} label={project.title} accent={project.accent} />
