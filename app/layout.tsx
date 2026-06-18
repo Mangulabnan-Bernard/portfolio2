@@ -66,8 +66,13 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${sora.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen">
+      <head>
+        {/* Apply the saved theme before paint (no flash). Kept in <head> so
+            third-party loaders that insert before the first <body> script
+            (e.g. PostHog's surveys.js) can't displace it and break hydration. */}
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+      </head>
+      <body className="min-h-screen">
         <PostHogProvider>
           <ScrollProgress />
           <Nav />
