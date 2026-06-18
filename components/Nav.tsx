@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 
-type Item = { href: string; label: string; icon: 'home' | 'user' | 'work' | 'code' | 'grid' | 'mail' };
+type Item = { href: string; label: string; icon: 'home' | 'user' | 'work' | 'code' | 'grid' | 'write' | 'mail' };
 
 const NAV: Item[] = [
   { href: '/', label: 'Home', icon: 'home' },
@@ -13,6 +13,7 @@ const NAV: Item[] = [
   { href: '/experience', label: 'Experience', icon: 'work' },
   { href: '/skills', label: 'Skills', icon: 'code' },
   { href: '/projects', label: 'Projects', icon: 'grid' },
+  { href: '/blog', label: 'Blog', icon: 'write' },
   { href: '/contact', label: 'Contact', icon: 'mail' },
 ];
 
@@ -38,6 +39,8 @@ function Icon({ name, size = 22 }: { name: Item['icon']; size?: number }) {
       return (<svg {...c}><path d="m7 7-3 3 3 3" /><path d="m13 7 3 3-3 3" /></svg>);
     case 'grid':
       return (<svg {...c}><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="11" y="3" width="6" height="6" rx="1" /><rect x="3" y="11" width="6" height="6" rx="1" /><rect x="11" y="11" width="6" height="6" rx="1" /></svg>);
+    case 'write':
+      return (<svg {...c}><path d="M4 13.5V16h2.5l7-7L11 6.5l-7 7Z" /><path d="m12.5 5 2.5 2.5" /></svg>);
     case 'mail':
       return (<svg {...c}><rect x="3" y="5" width="14" height="10" rx="1.5" /><path d="m3.5 6 6.5 5 6.5-5" /></svg>);
   }
