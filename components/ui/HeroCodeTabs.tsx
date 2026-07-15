@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 // Syntax palette — driven by the same CSS vars as the rest of the code theming.
 const K = ({ children }: { children: React.ReactNode }) => <span style={{ color: 'var(--code-key)' }}>{children}</span>;
@@ -45,36 +45,36 @@ const TABS: Tab[] = [
   {
     file: 'profile.ts',
     lines: [
-      <><K>const</K> <V>profile</V> <Pu>{'= {'}</Pu></>,
-      <StrLine prop="name" value="Bernard C. Mangulabnan" />,
-      <StrLine prop="role" value="Full Stack Web & Mobile Developer" />,
-      <StrLine prop="location" value="San Luis, Pampanga, PH" />,
-      <StrLine prop="education" value="BS Computer Science · 2026" />,
-      <>{'  '}<P>available</P><Pu>:</Pu> <span style={{ color: 'var(--code-prop)' }}>true</span><Pu>,</Pu></>,
-      <Pu>{'};'}</Pu>,
+      <Fragment key="profile-open"><K>const</K> <V>profile</V> <Pu>{'= {'}</Pu></Fragment>,
+      <StrLine key="profile-name" prop="name" value="Bernard C. Mangulabnan" />,
+      <StrLine key="profile-role" prop="role" value="Full Stack Web & Mobile Developer" />,
+      <StrLine key="profile-location" prop="location" value="San Luis, Pampanga, PH" />,
+      <StrLine key="profile-education" prop="education" value="BS Computer Science · 2026" />,
+      <Fragment key="profile-available">{'  '}<P>available</P><Pu>:</Pu> <span style={{ color: 'var(--code-prop)' }}>true</span><Pu>,</Pu></Fragment>,
+      <Fragment key="profile-close"><Pu>{'};'}</Pu></Fragment>,
     ],
   },
   {
     file: 'skills.ts',
     lines: [
-      <><K>const</K> <V>skills</V> <Pu>{'= {'}</Pu></>,
-      <ArrLine prop="frontend" items={['React', 'Next.js', 'TypeScript']} />,
-      <ArrLine prop="mobile" items={['Flutter', 'Dart']} />,
-      <ArrLine prop="backend" items={['Node.js', 'Express', 'Prisma']} />,
-      <ArrLine prop="database" items={['MySQL', 'PHP']} />,
-      <ArrLine prop="tools" items={['Git', 'Vercel', 'AWS']} />,
-      <Pu>{'};'}</Pu>,
+      <Fragment key="skills-open"><K>const</K> <V>skills</V> <Pu>{'= {'}</Pu></Fragment>,
+      <ArrLine key="skills-frontend" prop="frontend" items={['React', 'Next.js', 'TypeScript']} />,
+      <ArrLine key="skills-mobile" prop="mobile" items={['Flutter', 'Dart']} />,
+      <ArrLine key="skills-backend" prop="backend" items={['Node.js', 'Express', 'Prisma']} />,
+      <ArrLine key="skills-database" prop="database" items={['MySQL', 'PHP']} />,
+      <ArrLine key="skills-tools" prop="tools" items={['Git', 'Vercel', 'AWS']} />,
+      <Fragment key="skills-close"><Pu>{'};'}</Pu></Fragment>,
     ],
   },
   {
     file: 'contact.ts',
     lines: [
-      <><K>const</K> <V>contact</V> <Pu>{'= {'}</Pu></>,
-      <StrLine prop="email" value="mangulabnan.bernard321@gmail.com" />,
-      <StrLine prop="github" value="@Mangulabnan-Bernard" />,
-      <StrLine prop="linkedin" value="in/bernard-mangulabnan" />,
-      <StrLine prop="status" value="open to opportunities" />,
-      <Pu>{'};'}</Pu>,
+      <Fragment key="contact-open"><K>const</K> <V>contact</V> <Pu>{'= {'}</Pu></Fragment>,
+      <StrLine key="contact-email" prop="email" value="mangulabnan.bernard321@gmail.com" />,
+      <StrLine key="contact-github" prop="github" value="@Mangulabnan-Bernard" />,
+      <StrLine key="contact-linkedin" prop="linkedin" value="in/bernard-mangulabnan" />,
+      <StrLine key="contact-status" prop="status" value="open to opportunities" />,
+      <Fragment key="contact-close"><Pu>{'};'}</Pu></Fragment>,
     ],
   },
 ];

@@ -64,9 +64,9 @@ export default function HeroPointGlobe() {
       for (let i = 0; i < N; i++) {
         const [px, py, pz] = pts[i];
         // rotate Y then X
-        let x = px * cosY - pz * sinY;
+        const x = px * cosY - pz * sinY;
         let z = px * sinY + pz * cosY;
-        let y = py * cosX - z * sinX;
+        const y = py * cosX - z * sinX;
         z = py * sinX + z * cosX;
 
         const scale = fov / (fov - z); // perspective
