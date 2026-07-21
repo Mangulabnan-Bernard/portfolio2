@@ -141,6 +141,22 @@ export default function ProjectsExplorer() {
     ? `Showing ${projects.length} project${projects.length === 1 ? '' : 's'} across the portfolio`
     : `Showing ${projects.length} ${filter === 'web' ? 'web' : 'mobile'} project${projects.length === 1 ? '' : 's'}`;
 
+  if (projects.length === 0) {
+    return (
+      <div className="rounded-[16px] border border-dashed border-border bg-surface p-8 text-center">
+        <p className="font-mono text-[13px] font-semibold text-text mb-2">No projects match this filter.</p>
+        <p className="text-text-2 text-[13px] leading-[1.7] mb-4">Try switching back to all projects to browse the full portfolio.</p>
+        <button
+          type="button"
+          onClick={() => setFilter('all')}
+          className="font-mono text-[11px] tracking-[0.08em] px-3.5 py-1.5 rounded-full border border-teal-3 bg-teal/8 text-teal cursor-pointer"
+        >
+          Show all projects
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="mb-5 flex flex-wrap items-center gap-2">
