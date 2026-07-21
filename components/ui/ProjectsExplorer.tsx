@@ -8,7 +8,7 @@ import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
 import { PROJECTS, projectSlug, type Project, type ProjectLink } from '@/lib/projects';
 
 type FilterId = 'all' | 'web' | 'mobile';
-type LayoutId = 'explorer' | 'compact' | 'spotlight' | 'list' | 'story' | 'grid';
+type LayoutId = 'explorer' | 'compact' | 'spotlight' | 'list' | 'story' | 'grid' | 'stacked';
 
 const FILTERS: { id: FilterId; label: string }[] = [
   { id: 'all', label: 'All' },
@@ -23,6 +23,7 @@ const LAYOUTS: { id: LayoutId; label: string }[] = [
   { id: 'list', label: 'List' },
   { id: 'story', label: 'Story' },
   { id: 'grid', label: 'Grid' },
+  { id: 'stacked', label: 'Stacked' },
 ];
 
 function renderLink(link: ProjectLink, i: number) {
@@ -119,6 +120,10 @@ function LayoutIcon({ id }: { id: LayoutId }) {
       return (
         <svg {...common}><rect x="1.5" y="1.5" width="3" height="3" rx="0.5" /><rect x="6" y="1.5" width="3" height="3" rx="0.5" /><rect x="10.5" y="1.5" width="3" height="3" rx="0.5" /><rect x="1.5" y="6" width="3" height="3" rx="0.5" /><rect x="6" y="6" width="3" height="3" rx="0.5" /><rect x="10.5" y="6" width="3" height="3" rx="0.5" /><rect x="1.5" y="10.5" width="3" height="3" rx="0.5" /><rect x="6" y="10.5" width="3" height="3" rx="0.5" /><rect x="10.5" y="10.5" width="3" height="3" rx="0.5" /></svg>
       );
+    case 'stacked':
+      return (
+        <svg {...common}><rect x="1.5" y="2" width="13" height="3.5" rx="1" /><rect x="1.5" y="6.5" width="13" height="3.5" rx="1" /><rect x="1.5" y="11" width="13" height="3.5" rx="1" /></svg>
+      );
   }
 }
 
@@ -188,6 +193,7 @@ export default function ProjectsExplorer() {
         {layout === 'list' && <HoverListLayout projects={projects} />}
         {layout === 'story' && <StoryLayout projects={projects} />}
         {layout === 'grid' && <GridLayout projects={projects} />}
+        {layout === 'stacked' && <StackedLayout projects={projects} />}
       </div>
     </div>
   );
@@ -384,6 +390,30 @@ function GridLayout({ projects }: { projects: Project[] }) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {projects.map((p) => (
         <ProjectCard key={p.title} project={p} />
+      ))}
+    </div>
+  );
+}
+
+/* 7) Stacked — one project per row with a richer summary */
+function StackedLayout({ projects }: { projects: Project[] }) {
+  return (
+    <div className="flex flex-col gap-4">
+      {projects.map((p) => (
+        <div key={p.title} className="group rounded-[16px] border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-teal-3">
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0">
+              <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">{p.badge}</div>
+              <h3 className="font-mono text-[1.1rem] font-bold text-text mb-2">{p.title}</h3>
+              <p className="text-text-2 text-[0.92rem] leading-[1.75]">{p.description}</p>
+            </div>
+            <div className="flex flex-wrap gap-2 md:justify-end">
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] rounded-full border border-border px-3 py-1 text-text-3">{p.category}</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] rounded-full border border-border px-3 py-1 text-text-3">{p.tech[0]}</span>
+            </div>
+          </div>
+          <div className="mt-4"><LinksRow project={p} /></div>
+        </div>
       ))}
     </div>
   );
