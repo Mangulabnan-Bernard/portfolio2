@@ -132,8 +132,17 @@ export default function ProjectsExplorer() {
   );
   const count = (id: FilterId) => (id === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.category === id).length);
 
+  const summaryLabel = filter === 'all'
+    ? `Showing ${projects.length} project${projects.length === 1 ? '' : 's'} across the portfolio`
+    : `Showing ${projects.length} ${filter === 'web' ? 'web' : 'mobile'} project${projects.length === 1 ? '' : 's'}`;
+
   return (
     <div>
+      <div className="mb-5 flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-muted">{summaryLabel}</span>
+        <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-text-3">Web {count('web')} • Mobile {count('mobile')}</span>
+      </div>
+
       {/* Controls — filter on the left, layout icon switch on the right */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
         <div className="flex flex-wrap items-center gap-2">
