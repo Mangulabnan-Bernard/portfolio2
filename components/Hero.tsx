@@ -59,7 +59,7 @@ export default function Hero() {
           <div className="dot w-[7px] h-[7px] rounded-full bg-teal animate-pulse"></div>
           Available for new projects
         </div>
-        <h1 className="font-mono text-[clamp(2.6rem,6vw,4.5rem)] font-bold leading-[1.05] text-text mb-4">
+        <h1 className="font-mono text-[clamp(2.6rem,6vw,4.5rem)] font-bold leading-[1.05] text-text mb-4 animate-fade transition-smooth">
           Bernard C.<br />
           <span className="text-teal">Mangulabnan</span>
         </h1>
@@ -80,7 +80,7 @@ export default function Hero() {
           <a
             href="/BernardMangulabnan.pdf"
             download
-            className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-flex items-center gap-2"
+            className="btn-outline font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-transparent text-teal border border-teal-3 rounded-[8px] cursor-pointer no-underline font-normal transition-all hover:bg-teal/8 hover:border-teal inline-flex items-center gap-2 scale-on-hover"
           >
             Download CV
             <span aria-hidden="true">↓</span>
@@ -120,7 +120,7 @@ export default function Hero() {
         <div className="hero-photo-glow absolute bottom-[-30px] left-1/2 -translate-x-1/2 w-[180px] h-[40px] hero-glow-gradient rounded-full animate-float blur-[8px]"></div>
       </div>
       */}
-      <div className="hero-visual flex-shrink-0 w-full md:w-auto mt-10 md:mt-0">
+      <div className="hero-visual flex-shrink-0 w-full md:w-auto mt-10 md:mt-0 animate-fade-soft transition-smooth">
         <HeroCodeCard />
       </div>
     </section>
