@@ -49,7 +49,7 @@ export default function ThemeSwitcher() {
           aria-label={`${t.label} theme`}
           aria-pressed={theme === t.id}
           title={`${t.label} theme`}
-          className={`w-[18px] h-[18px] rounded-full cursor-pointer transition-transform hover:scale-110 ${
+          className={`w-[18px] h-[18px] rounded-full cursor-pointer transition-transform hover:scale-110 theme-btn ${
             theme === t.id
               ? 'ring-2 ring-offset-2 ring-offset-bg ring-teal scale-110'
               : 'ring-1 ring-border'
