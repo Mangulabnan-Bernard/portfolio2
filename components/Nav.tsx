@@ -72,7 +72,7 @@ export default function Nav() {
               href={n.href}
               onClick={handleNav(n.href)}
               aria-current={isActive ? 'page' : undefined}
-              className={`group flex items-center gap-1.5 rounded-full px-3 py-2 transition-all duration-300 ease-out no-underline ${
+              className={`group flex items-center gap-1.5 rounded-full px-3 py-2 transition-all duration-300 ease-out no-underline nav-link-underline ${
                 isActive ? 'bg-teal text-bg' : 'text-text-2 hover:text-teal'
               }`}
               style={isActive ? { boxShadow: '0 0 16px -6px var(--color-teal)' } : undefined}
