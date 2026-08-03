@@ -269,3 +269,43 @@ html {
 .hero-glow-gradient {
   background: radial-gradient(ellipse, color-mix(in srgb, var(--color-teal) 25%, transparent), transparent 70%);
 }
+
+/* Small utility helpers for subtle interactions */
+.transition-smooth {
+  transition: transform 0.32s cubic-bezier(.2,.9,.2,1), opacity 0.24s ease, box-shadow 0.24s ease;
+}
+
+.tilt-hover {
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(.2,.9,.2,1);
+}
+.tilt-hover:hover {
+  transform: perspective(600px) rotateX(3deg) rotateY(-4deg) translateY(-4px);
+}
+
+.scale-on-hover {
+  will-change: transform;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+}
+.scale-on-hover:hover { transform: scale(1.025); }
+
+.nav-link-underline { position: relative; }
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  bottom: -6px;
+  background: var(--color-teal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+  border-radius: 2px;
+}
+.nav-link-underline:hover::after,
+.nav-link-underline[aria-current='page']::after { transform: scaleX(1); }
+
+.theme-btn:active { transform: rotate(14deg) scale(0.96); }
+
