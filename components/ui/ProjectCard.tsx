@@ -53,9 +53,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const cardClass = project.featured
     ? 'project-card h-full group border border-teal/25 bg-[linear-gradient(135deg,color-mix(in_srgb,var(--color-teal)_4%,transparent),var(--color-surface))] rounded-[14px] overflow-hidden flex flex-col lg:col-span-3 transition-all hover:border-teal/40 hover:-translate-y-0.5'
     : 'project-card h-full group bg-surface border border-border rounded-[14px] overflow-hidden flex flex-col transition-all hover:border-teal-3 hover:-translate-y-0.5';
+  // add subtle scale-on-hover to the overall card
+  const cardClassWithScale = cardClass + ' scale-on-hover transform-gpu';
 
   return (
-    <div className={cardClass}>
+    <div className={cardClassWithScale}>
       <ProjectCover
         title={project.title}
         badge={project.badge}
