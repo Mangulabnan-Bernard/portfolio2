@@ -3,10 +3,13 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import HeroCodeCard from '@/components/ui/HeroCodeCard';
+import HeroStat from '@/components/ui/HeroStat';
 import { SKILL_CATEGORIES } from '@/components/Skills';
 import { PROJECTS } from '@/lib/projects';
 
 const PROJECT_COUNT = PROJECTS.length;
+const WEB_COUNT = PROJECTS.filter((p) => p.category === 'web').length;
+const MOBILE_COUNT = PROJECTS.filter((p) => p.category === 'mobile').length;
 const SKILL_COUNT = SKILL_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
 
 const ROLES = [
@@ -87,22 +90,10 @@ export default function Hero() {
           </a>
         </div>
         <div className="hero-stats flex gap-10 pt-10 border-t border-border flex-wrap">
-          <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">1+</div>
-            <div className="stat-label text-[12px] text-muted mt-1">Years Experience</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">{PROJECT_COUNT}</div>
-            <div className="stat-label text-[12px] text-muted mt-1">Projects Shipped</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">{SKILL_COUNT}</div>
-            <div className="stat-label text-[12px] text-muted mt-1">Technologies</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num font-mono text-[1.8rem] font-bold text-teal leading-none">1</div>
-            <div className="stat-label text-[12px] text-muted mt-1">AI/ML App</div>
-          </div>
+          <HeroStat value={PROJECT_COUNT} label="Projects Built" />
+          <HeroStat value={SKILL_COUNT} label="Tech Stack" />
+          <HeroStat value="2026" label="CS Graduate" animate={false} />
+          <HeroStat value={`${WEB_COUNT} · ${MOBILE_COUNT}`} label="Web · Mobile" animate={false} />
         </div>
       </div>
       {/* Hero photo hidden for now — uncomment to restore:
