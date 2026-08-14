@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ProjectCard from '@/components/ui/ProjectCard';
 import ProjectCover from '@/components/ui/ProjectCover';
 import ScreenshotGallery from '@/components/ui/ScreenshotGallery';
@@ -17,14 +17,31 @@ const FILTERS: { id: FilterId; label: string }[] = [
 ];
 
 const LAYOUTS: { id: LayoutId; label: string }[] = [
+  { id: 'spotlight', label: 'Spotlight' },
+  { id: 'grid', label: 'Grid' },
   { id: 'explorer', label: 'Explorer' },
   { id: 'compact', label: 'Compact' },
-  { id: 'spotlight', label: 'Spotlight' },
   { id: 'list', label: 'List' },
   { id: 'story', label: 'Story' },
-  { id: 'grid', label: 'Grid' },
   { id: 'stacked', label: 'Stacked' },
 ];
+
+const DEFAULT_LAYOUT: LayoutId = 'spotlight';
+const LAYOUT_STORAGE_KEY = 'projects-layout';
+
+function isLayoutId(value: string): value is LayoutId {
+  return LAYOUTS.some((layout) => layout.id === value);
+}
+
+function readStoredLayout(): LayoutId {
+  try {
+    const stored = localStorage.getItem(LAYOUT_STORAGE_KEY);
+    if (stored && isLayoutId(stored)) return stored;
+  } catch {
+    /* storage blocked */
+  }
+  return DEFAULT_LAYOUT;
+}
 
 function renderLink(link: ProjectLink, i: number) {
   if (link.type === 'soon') {
@@ -129,7 +146,22 @@ function LayoutIcon({ id }: { id: LayoutId }) {
 
 export default function ProjectsExplorer() {
   const [filter, setFilter] = useState<FilterId>('all');
-  const [layout, setLayout] = useState<LayoutId>('explorer');
+  const [layout, setLayout] = useState<LayoutId>(DEFAULT_LAYOUT);
+  const [showLayoutOptions, setShowLayoutOptions] = useState(false);
+
+  useEffect(() => {
+    setLayout(readStoredLayout());
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LAYOUT_STORAGE_KEY, layout);
+    } catch {
+      /* storage blocked */
+    }
+  }, [layout]);
+
+  const activeLayout = LAYOUTS.find((l) => l.id === layout) ?? LAYOUTS[0];
 
   const projects = useMemo(
     () => PROJECTS.filter((p) => filter === 'all' || p.category === filter),
@@ -182,22 +214,35 @@ export default function ProjectsExplorer() {
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-1.5" role="group" aria-label="Layout">
-          {LAYOUTS.map((l) => (
-            <button
-              key={l.id}
-              type="button"
-              onClick={() => setLayout(l.id)}
-              aria-pressed={layout === l.id}
-              aria-label={l.label}
-              title={l.label}
-              className={`w-9 h-9 grid place-items-center rounded-[8px] border cursor-pointer transition-colors ${
-                layout === l.id ? 'bg-teal text-bg border-teal' : 'bg-surface text-text-2 border-border hover:border-teal-3 hover:text-teal'
-              }`}
-            >
-              <LayoutIcon id={l.id} />
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setShowLayoutOptions((open) => !open)}
+            aria-expanded={showLayoutOptions}
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.08em] px-3.5 py-1.5 rounded-full border cursor-pointer transition-colors bg-surface text-text-2 border-border hover:border-teal-3 hover:text-teal"
+          >
+            Layout: {activeLayout.label}
+            <span className="text-[10px] text-muted" aria-hidden="true">{showLayoutOptions ? '▴' : '▾'}</span>
+          </button>
+          {showLayoutOptions && (
+            <div className="flex items-center gap-1.5 w-full sm:w-auto" role="group" aria-label="Layout">
+              {LAYOUTS.map((l) => (
+                <button
+                  key={l.id}
+                  type="button"
+                  onClick={() => setLayout(l.id)}
+                  aria-pressed={layout === l.id}
+                  aria-label={l.label}
+                  title={l.label}
+                  className={`w-9 h-9 grid place-items-center rounded-[8px] border cursor-pointer transition-colors ${
+                    layout === l.id ? 'bg-teal text-bg border-teal' : 'bg-surface text-text-2 border-border hover:border-teal-3 hover:text-teal'
+                  }`}
+                >
+                  <LayoutIcon id={l.id} />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
