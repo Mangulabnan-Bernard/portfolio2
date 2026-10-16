@@ -5,6 +5,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import TechIcon from '@/components/ui/TechIcon';
 import SkillsMarquee from '@/components/ui/SkillsMarquee';
 import SkillsExplorer from '@/components/ui/SkillsExplorer';
+import SkillsGraph from '@/components/ui/SkillsGraph';
 
 type SkillsProps = {
   summary?: boolean;
@@ -133,6 +134,13 @@ export default function Skills({ summary = false }: SkillsProps) {
       ) : (
         <>
           <RevealSection>
+            <p className="text-text-2 text-[0.95rem] leading-[1.8] mb-6 max-w-[62ch]">
+              {ALL_SKILLS.length} skills across {SKILL_CATEGORIES.length} clusters — hover any node to see it. Nodes that share work pull closer together; the graph drifts on its own.
+            </p>
+            <SkillsGraph categories={SKILL_CATEGORIES} />
+          </RevealSection>
+
+          <RevealSection className="mt-12">
             <SkillsExplorer categories={SKILL_CATEGORIES} />
           </RevealSection>
 
