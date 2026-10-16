@@ -1,12 +1,12 @@
 {
   "name": "Bernard C. Mangulabnan Portfolio",
   "short_name": "BernardPortfolio",
-  "description": "Portfolio website of Bernard C. Mangulabnan — Web Developer specializing in Next.js, React, TypeScript, and AI-augmented development.",
+  "description": "Portfolio of Bernard C. Mangulabnan — a full-stack web and mobile developer building thoughtful web, mobile, and AI-assisted experiences.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#090e0c",
-  "theme_color": "#00e5a0",
+  "background_color": "#0b1112",
+  "theme_color": "#c9ed80",
   "orientation": "portrait-primary",
   "icons": [
     {
