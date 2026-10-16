@@ -1,6 +1,3 @@
-import RevealSection from '@/components/RevealSection';
-import Section from '@/components/ui/Section';
-import SectionHeader from '@/components/ui/SectionHeader';
 import { GITHUB_URL, GITHUB_USERNAME } from '@/lib/site';
 
 type Repo = {
@@ -68,13 +65,14 @@ function relativeTime(iso: string): string {
 export default async function GitHubReposContent() {
   const repos = await getRepos();
 
-  if (repos.length === 0) return null;
-
   return (
-    <Section id="github">
-      <SectionHeader label="Open Source" title="Recent GitHub Activity_" />
-      <RevealSection>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="github-activity-section section shell" id="github" aria-labelledby="github-title">
+      <div className="section-head reveal">
+        <div><p className="eyebrow">04 / OPEN SOURCE</p><h2 id="github-title">Recent work,<br/><em>still moving.</em></h2></div>
+        <p>Fresh public repositories and experiments, pulled directly from GitHub.</p>
+      </div>
+      {repos.length > 0 ? (
+        <div className="github-repo-grid">
           {repos.map((repo) => {
             const color = (repo.language && LANG_COLORS[repo.language]) || 'var(--color-teal)';
             return (
@@ -83,47 +81,36 @@ export default async function GitHubReposContent() {
                 href={repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col rounded-[12px] border border-border bg-surface/40 p-5 no-underline transition-all hover:-translate-y-0.5 hover:border-teal-3"
+                className="github-repo-card reveal"
               >
-                <div className="mb-3 flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="text-muted" aria-hidden="true">
+                <div className="github-repo-title">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                     <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
                   </svg>
-                  <span className="truncate font-mono text-[13px] font-semibold text-text transition-colors group-hover:text-teal">
-                    {repo.name}
-                  </span>
+                  <strong>{repo.name}</strong>
                 </div>
-                <p className="mb-4 flex-1 text-[13px] leading-[1.6] text-text-2 line-clamp-2">
-                  {repo.description ?? 'No description provided.'}
-                </p>
-                <div className="flex items-center gap-4 font-mono text-[11px] text-muted">
+                <p>{repo.description ?? 'An active public project in Bernard’s GitHub archive.'}</p>
+                <div className="github-repo-meta">
                   {repo.language && (
-                    <span className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
+                    <span>
+                      <i style={{ backgroundColor: color }} />
                       {repo.language}
                     </span>
                   )}
                   {repo.stargazers_count > 0 && (
-                    <span className="flex items-center gap-1">★ {repo.stargazers_count}</span>
+                    <span>★ {repo.stargazers_count}</span>
                   )}
-                  <span className="ml-auto">{relativeTime(repo.pushed_at)}</span>
+                  <span>{relativeTime(repo.pushed_at)}</span>
                 </div>
+                <b aria-hidden="true">↗</b>
               </a>
             );
           })}
         </div>
-        <div className="mt-8 flex justify-center">
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-[8px] border border-teal-3 px-6 py-3 font-mono text-[12px] tracking-[0.1em] text-teal no-underline transition-all hover:border-teal hover:bg-teal/8"
-          >
-            View GitHub Profile
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </RevealSection>
-    </Section>
+      ) : (
+        <p className="github-empty reveal">GitHub activity is temporarily unavailable, but the public archive is still one click away.</p>
+      )}
+      <div className="github-action reveal"><a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="button button-outline">View GitHub profile <span aria-hidden="true">↗</span></a></div>
+    </section>
   );
 }
