@@ -150,6 +150,8 @@ export default function ProjectsExplorer() {
   const [showLayoutOptions, setShowLayoutOptions] = useState(false);
 
   useEffect(() => {
+    // This is client-only state: rendering must initially match the server.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLayout(readStoredLayout());
   }, []);
 
