@@ -1,0 +1,305 @@
+/* Design 2: an interactive appreciation drawer anchored to the viewport edge. */
+html[data-heart-design="2"] .appreciation-dock{
+  --drawer-width:310px;
+  --handle-width:44px;
+  --panel-width:266px;
+  --drawer-inside:#0b1514;
+  position:fixed;
+  z-index:48;
+  top:58%;
+  right:0;
+  bottom:auto;
+  width:var(--drawer-width);
+  height:154px;
+  margin:0;
+  isolation:isolate;
+  filter:drop-shadow(-14px 18px 24px #0003);
+  transform:translate(var(--panel-width),-50%);
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+  scroll-margin-top:0
+}
+html[data-heart-design="2"] .appreciation-dock.is-open{transform:translate(0,-50%)}
+html[data-heart-design="2"] .appreciation-dock::before,
+html[data-heart-design="2"] .appreciation-dock::after{display:none}
+
+html[data-heart-design="2"] .heart-design-two-toggle{
+  position:absolute;
+  z-index:4;
+  inset:0 auto 0 0;
+  display:grid;
+  grid-template-rows:30px 28px 1fr;
+  place-items:center;
+  width:var(--handle-width);
+  padding:14px 0 11px;
+  border:1px solid color-mix(in srgb,var(--accent) 68%,var(--line));
+  border-right:0;
+  border-radius:12px 0 0 12px;
+  background:var(--accent);
+  color:var(--drawer-inside);
+  box-shadow:inset 1px 0 #ffffff35;
+  cursor:pointer;
+  transition:background .25s,color .25s
+}
+html[data-heart-design="2"] .heart-design-two-toggle>span{
+  position:absolute;
+  left:0;
+  top:14px;
+  width:var(--handle-width);
+  font-size:19px;
+  line-height:1;
+  text-align:center;
+  transition:transform .35s cubic-bezier(.22,1,.36,1)
+}
+html[data-heart-design="2"] .heart-design-two-toggle>strong{
+  position:absolute;
+  z-index:6;
+  left:0;
+  top:45px;
+  width:var(--handle-width);
+  color:var(--drawer-inside);
+  font:800 14px/1 Arial,"Helvetica Neue",sans-serif;
+  letter-spacing:-.04em;
+  text-align:center;
+  transition:left .55s cubic-bezier(.22,1,.36,1),top .55s cubic-bezier(.22,1,.36,1),font-size .55s cubic-bezier(.22,1,.36,1),color .3s
+}
+html[data-heart-design="2"] .heart-design-two-toggle>small{
+  position:absolute;
+  left:16px;
+  bottom:11px;
+  color:currentColor;
+  font:800 7px/1 Consolas,"Courier New",monospace;
+  letter-spacing:.14em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg)
+}
+html[data-heart-design="2"] .heart-design-two-toggle:hover>span,
+html[data-heart-design="2"] .heart-design-two-toggle:focus-visible>span{transform:scale(1.18)}
+html[data-heart-design="2"] .heart-design-two-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+html[data-heart-design="2"] .appreciation-dock.is-open .heart-design-two-toggle{background:var(--ink);color:var(--bg)}
+html[data-heart-design="2"] .appreciation-dock.is-open .heart-design-two-toggle>strong{
+  left:66px;
+  top:70px;
+  width:auto;
+  color:var(--ink);
+  font-size:42px;
+  line-height:.78;
+  letter-spacing:-.075em;
+  text-align:left
+}
+html[data-heart-design="2"] .heart-design-two-toggle.is-hearted>span{animation:drawer-heart-idle 2.8s ease-in-out infinite}
+
+html[data-heart-design="2"] .heart-button{
+  position:absolute;
+  z-index:2;
+  left:var(--handle-width);
+  top:0;
+  display:block;
+  width:var(--panel-width);
+  height:154px;
+  min-height:0;
+  padding:50px 72px 24px 22px;
+  border:1px solid var(--line);
+  border-right:0;
+  border-radius:0;
+  background:
+    linear-gradient(135deg,color-mix(in srgb,var(--paper) 96%,transparent),color-mix(in srgb,var(--bg) 94%,transparent));
+  color:var(--ink);
+  text-align:left;
+  box-shadow:inset 0 1px color-mix(in srgb,var(--ink) 5%,transparent);
+  transform:none;
+  transform-origin:center;
+  transition:background .25s;
+  overflow:hidden;
+  backdrop-filter:blur(18px)
+}
+html[data-heart-design="2"] .heart-button::before{
+  content:"";
+  position:absolute;
+  left:22px;
+  right:22px;
+  bottom:20px;
+  height:1px;
+  background:linear-gradient(90deg,var(--accent) 0 36px,var(--line) 36px 100%)
+}
+html[data-heart-design="2"] .heart-button:not(:disabled):hover{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--paper) 90%,var(--accent) 10%),color-mix(in srgb,var(--bg) 95%,transparent));
+  box-shadow:inset 0 1px color-mix(in srgb,var(--ink) 5%,transparent);
+  transform:none
+}
+html[data-heart-design="2"] .heart-button:active:not(:disabled){transform:none}
+html[data-heart-design="2"] .heart-button:focus-visible{outline:1px dashed var(--accent);outline-offset:-8px}
+
+html[data-heart-design="2"] .heart-copy{
+  display:block;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0
+}
+html[data-heart-design="2"] .heart-kicker{
+  position:absolute;
+  left:22px;
+  top:51px;
+  display:block;
+  color:var(--muted);
+  font:800 8px/1 Consolas,"Courier New",monospace;
+  letter-spacing:.1em;
+  white-space:nowrap;
+  transition:color .25s
+}
+html[data-heart-design="2"] .heart-total{
+  display:block;
+  color:var(--ink);
+  font:750 7px/1 Consolas,"Courier New",monospace;
+  letter-spacing:.16em;
+  white-space:nowrap
+}
+html[data-heart-design="2"] .heart-total strong{
+  display:none
+}
+html[data-heart-design="2"] .heart-total strong::after{display:none}
+html[data-heart-design="2"] .heart-total small{
+  position:absolute;
+  left:113px;
+  top:90px;
+  color:var(--accent);
+  font-size:7px;
+  letter-spacing:.12em
+}
+
+html[data-heart-design="2"] .heart-symbol{
+  position:absolute;
+  z-index:2;
+  top:52px;
+  right:18px;
+  display:grid;
+  place-items:center;
+  width:45px;
+  height:45px;
+  border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));
+  border-radius:13px;
+  background:transparent;
+  color:var(--accent);
+  box-shadow:none;
+  transform:rotate(4deg);
+  transition:background .3s,color .3s,transform .45s cubic-bezier(.22,1,.36,1)
+}
+html[data-heart-design="2"] .heart-symbol::before,
+html[data-heart-design="2"] .heart-symbol::after{display:none}
+html[data-heart-design="2"] .heart-symbol svg{
+  width:21px;
+  height:21px;
+  fill:transparent;
+  stroke:currentColor;
+  stroke-width:1.55;
+  transition:fill .25s,transform .45s cubic-bezier(.22,1,.36,1)
+}
+html[data-heart-design="2"] .heart-button:not(:disabled):hover .heart-kicker{color:var(--accent)}
+html[data-heart-design="2"] .heart-button:not(:disabled):hover .heart-symbol{background:var(--accent);color:var(--drawer-inside);transform:rotate(0) scale(1.08)}
+html[data-heart-design="2"] .heart-button:not(:disabled):hover .heart-symbol svg{fill:currentColor;transform:scale(1.08)}
+html[data-heart-design="2"] .heart-button.is-hearted .heart-symbol{background:var(--accent);color:var(--drawer-inside);transform:rotate(0)}
+html[data-heart-design="2"] .heart-button.is-hearted .heart-symbol svg{fill:currentColor}
+html[data-heart-design="2"] .heart-spark{
+  position:absolute;
+  top:auto;
+  right:23px;
+  bottom:24px;
+  display:none;
+  color:var(--accent);
+  font-size:10px
+}
+
+html[data-heart-design="2"] .heart-design-two-caption{
+  position:absolute;
+  z-index:3;
+  left:66px;
+  right:20px;
+  top:18px;
+  display:flex;
+  justify-content:flex-start;
+  color:var(--muted);
+  font:800 8px/1 Consolas,"Courier New",monospace;
+  letter-spacing:.08em;
+  pointer-events:none
+}
+html[data-heart-design="2"] .heart-design-two-caption span:first-child{color:var(--accent)}
+html[data-heart-design="2"] .heart-spark{display:none}
+
+html[data-heart-design="2"] .appreciation-dock.is-celebrating .heart-symbol{animation:drawer-heart-celebrate .72s cubic-bezier(.22,1,.36,1)}
+
+@keyframes drawer-heart-idle{
+  0%,88%,100%{transform:scale(1)}
+  92%{transform:scale(1.16)}
+  96%{transform:scale(.96)}
+}
+@keyframes drawer-heart-celebrate{
+  0%,100%{transform:scale(1)}
+  40%{transform:scale(1.22) rotate(-5deg)}
+  70%{transform:scale(.95) rotate(2deg)}
+}
+
+html[data-theme="light"][data-heart-design="2"] .appreciation-dock{--drawer-inside:#f7f8f3;filter:drop-shadow(-14px 18px 24px #24452d24)}
+html[data-theme="light"][data-heart-design="2"] .heart-button{background:linear-gradient(135deg,#fffefaef,#f7f8f3f2)}
+html[data-theme="light"][data-heart-design="2"] .heart-button:not(:disabled):hover{background:linear-gradient(135deg,#f4f8ed,#fffefa)}
+
+html[data-theme="dark"][data-heart-design="2"] .appreciation-dock{
+  filter:drop-shadow(-13px 18px 27px #0009) drop-shadow(0 0 12px #c9ed801c)
+}
+html[data-theme="dark"][data-heart-design="2"] .heart-design-two-toggle{
+  border-color:#e0f7a7;
+  background:#c9ed80;
+  color:#0b1514;
+  box-shadow:inset 1px 0 #ffffff5c,0 0 0 1px #c9ed801c
+}
+html[data-theme="dark"][data-heart-design="2"] .appreciation-dock.is-open .heart-design-two-toggle{
+  border-color:#516b5b;
+  background:#172723;
+  color:#d9f6a0
+}
+html[data-theme="dark"][data-heart-design="2"] .heart-button{
+  border-color:#42584d;
+  background:linear-gradient(140deg,#172522fa,#0d1716fa);
+  color:#f1f5eb;
+  box-shadow:inset 0 1px #ffffff0d
+}
+html[data-theme="dark"][data-heart-design="2"] .heart-button:not(:disabled):hover{
+  background:linear-gradient(140deg,#1a2b26,#0f1a18)
+}
+html[data-theme="dark"][data-heart-design="2"] .heart-kicker{color:#b7c7bd}
+html[data-theme="dark"][data-heart-design="2"] .heart-symbol{border-color:#9dc66f;background:#1d3028;color:#c9ed80}
+html[data-theme="dark"][data-heart-design="2"] .heart-button.is-hearted .heart-symbol{background:#c9ed80;color:#0b1514}
+
+@media(max-width:600px){
+  html[data-heart-design="2"] .appreciation-dock{
+    --drawer-width:min(292px,calc(100vw - 16px));
+    --handle-width:44px;
+    --panel-width:calc(var(--drawer-width) - var(--handle-width));
+    top:auto;
+    bottom:max(12px,env(safe-area-inset-bottom) + 8px);
+    height:132px;
+    transform:translateX(var(--panel-width))
+  }
+  html[data-heart-design="2"] .appreciation-dock.is-open{transform:translateX(0)}
+  html[data-heart-design="2"] .heart-design-two-toggle{grid-template-rows:23px 21px 1fr;height:132px;padding-block:11px 9px}
+  html[data-heart-design="2"] .heart-design-two-toggle>span{top:12px;font-size:17px}
+  html[data-heart-design="2"] .heart-design-two-toggle>strong{top:38px;font-size:12px}
+  html[data-heart-design="2"] .heart-design-two-toggle>small{left:16px;bottom:9px;font-size:6px}
+  html[data-heart-design="2"] .appreciation-dock.is-open .heart-design-two-toggle>strong{left:62px;top:60px;font-size:37px}
+  html[data-heart-design="2"] .heart-button{height:132px;padding:44px 64px 21px 18px}
+  html[data-heart-design="2"] .heart-button::before{left:18px;right:18px;bottom:17px}
+  html[data-heart-design="2"] .heart-kicker{display:block;left:18px;top:43px;font-size:8px}
+  html[data-heart-design="2"] .heart-total strong{display:none}
+  html[data-heart-design="2"] .heart-total small{left:99px;top:78px;font-size:6px}
+  html[data-heart-design="2"] .heart-symbol{top:45px;right:15px;width:40px;height:40px}
+  html[data-heart-design="2"] .heart-symbol svg{width:19px;height:19px}
+  html[data-heart-design="2"] .heart-spark{display:none}
+  html[data-heart-design="2"] .heart-design-two-caption{left:62px;right:17px;top:15px;font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-heart-design="2"] .appreciation-dock,
+  html[data-heart-design="2"] .heart-design-two-toggle>span,
+  html[data-heart-design="2"] .heart-symbol,
+  html[data-heart-design="2"] .heart-symbol svg{transition:none}
+  html[data-heart-design="2"] .heart-design-two-toggle.is-hearted>span,
+  html[data-heart-design="2"] .appreciation-dock.is-celebrating .heart-symbol{animation:none}
+}

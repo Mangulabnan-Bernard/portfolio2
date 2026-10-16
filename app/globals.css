@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "../portfolio-v4/styles.css";
-@import "../portfolio-v4/theme.css";
-@import "../portfolio-v4/light.css";
-@import "../portfolio-v4/heart-design-2.css";
+@import "./portfolio-styles.css";
+@import "./portfolio-theme.css";
+@import "./portfolio-light.css";
+@import "./portfolio-heart.css";
 
 @theme inline {
   --color-bg: var(--bg);
