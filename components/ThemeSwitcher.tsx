@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 type ThemeId = 'green' | 'orange' | 'blue' | 'light';
 
 const THEMES: { id: ThemeId; label: string; swatch: string; meta: string }[] = [
-  { id: 'blue', label: 'Blue', swatch: '#3b9eff', meta: '#070a0f' },
+  { id: 'blue', label: 'Violet', swatch: '#7c8cff', meta: '#080b12' },
   { id: 'green', label: 'Green', swatch: '#00e5a0', meta: '#090e0c' },
   { id: 'orange', label: 'Orange', swatch: '#ff8c42', meta: '#0f0a06' },
   { id: 'light', label: 'Light', swatch: '#e6ebe8', meta: '#fafbfb' },
