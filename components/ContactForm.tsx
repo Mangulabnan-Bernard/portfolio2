@@ -12,117 +12,44 @@ export default function ContactForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-
-    const payload = {
-      name: String(data.get('name') ?? '').trim(),
-      email: String(data.get('email') ?? '').trim(),
-      message: String(data.get('message') ?? '').trim(),
-      // Honeypot: real users never fill this hidden field; bots do.
-      company: String(data.get('company') ?? ''),
-    };
-
     setStatus('sending');
     setErrorMsg('');
-
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          name: String(data.get('name') ?? '').trim(),
+          email: String(data.get('email') ?? '').trim(),
+          message: String(data.get('message') ?? '').trim(),
+          company: String(data.get('company') ?? ''),
+        }),
       });
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => null);
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
         throw new Error(body?.error ?? 'Something went wrong. Please try again.');
       }
-
       setStatus('success');
       form.reset();
-    } catch (err) {
+    } catch (error) {
       setStatus('error');
-      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong.');
+      setErrorMsg(error instanceof Error ? error.message : 'Something went wrong.');
     }
   };
 
   const sending = status === 'sending';
-
   return (
-    <form
-      className="contact-form-wrapper bg-surface border border-border rounded-[14px] p-7"
-      onSubmit={handleSubmit}
-    >
-      <div className="form-group mb-5">
-        <label htmlFor="contact-name" className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase block mb-1.5">
-          Your Name
-        </label>
-        <input
-          id="contact-name"
-          name="name"
-          type="text"
-          required
-          placeholder="John Doe"
-          className="w-full bg-bg border border-border rounded-[8px] px-3.5 py-2.5 font-sans text-[13px] text-text outline-none transition-colors focus:border-teal-3"
-        />
+    <form className="portfolio-form" onSubmit={handleSubmit}>
+      <div className="portfolio-form-grid">
+        <div className="portfolio-field"><label htmlFor="contact-name">Your name</label><input id="contact-name" name="name" type="text" required autoComplete="name" placeholder="John Doe"/></div>
+        <div className="portfolio-field"><label htmlFor="contact-email">Email address</label><input id="contact-email" name="email" type="email" required autoComplete="email" placeholder="john@example.com"/></div>
       </div>
-      <div className="form-group mb-5">
-        <label htmlFor="contact-email" className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase block mb-1.5">
-          Email Address
-        </label>
-        <input
-          id="contact-email"
-          name="email"
-          type="email"
-          required
-          placeholder="john@example.com"
-          className="w-full bg-bg border border-border rounded-[8px] px-3.5 py-2.5 font-sans text-[13px] text-text outline-none transition-colors focus:border-teal-3"
-        />
-      </div>
-      {/* Honeypot field — hidden from real users, catches spam bots. */}
-      <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
-        <label htmlFor="contact-company">Company (leave blank)</label>
-        <input
-          id="contact-company"
-          name="company"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
-      <div className="form-group mb-5">
-        <label htmlFor="contact-message" className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase block mb-1.5">
-          Message
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          required
-          placeholder="Tell me about your project..."
-          className="w-full bg-bg border border-border rounded-[8px] px-3.5 py-2.5 font-sans text-[13px] text-text outline-none transition-colors focus:border-teal-3 resize-vertical min-h-[100px]"
-        />
-      </div>
-      <button
-        type="submit"
-        disabled={sending}
-        className="form-submit font-mono text-[12px] tracking-[0.1em] px-7 py-3 bg-teal text-bg-2 border-none rounded-[8px] cursor-pointer font-bold w-full transition-colors hover:bg-teal-hover disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {sending ? 'Sending…' : 'Send Message →'}
-      </button>
-
-      {status === 'success' && (
-        <p className="font-mono text-[10px] text-teal mt-3 text-center" role="status">
-          Thanks! Your message has been sent. I&apos;ll get back to you soon.
-        </p>
-      )}
-      {status === 'error' && (
-        <p className="font-mono text-[10px] text-red-400 mt-3 text-center" role="alert">
-          {errorMsg}
-        </p>
-      )}
-      {status !== 'success' && status !== 'error' && (
-        <p className="font-mono text-[10px] text-muted mt-3 text-center">
-          Your message is sent straight to my inbox.
-        </p>
-      )}
+      <div className="sr-only" aria-hidden="true"><label htmlFor="contact-company">Company (leave blank)</label><input id="contact-company" name="company" type="text" tabIndex={-1} autoComplete="off"/></div>
+      <div className="portfolio-field"><label htmlFor="contact-message">Message</label><textarea id="contact-message" name="message" required placeholder="Tell me about your project..."/></div>
+      <button type="submit" disabled={sending} className="button button-dark">{sending ? 'Sending…' : 'Send message'} <span aria-hidden="true">↗</span></button>
+      {status === 'success' && <p className="form-status is-success" role="status">Thanks! Your message has been sent. I&apos;ll get back to you soon.</p>}
+      {status === 'error' && <p className="form-status is-error" role="alert">{errorMsg}</p>}
+      {status === 'idle' && <p className="form-status">Your message is sent straight to my inbox.</p>}
     </form>
   );
 }
