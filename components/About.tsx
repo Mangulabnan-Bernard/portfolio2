@@ -87,7 +87,7 @@ export default function About({ summary = false }: AboutProps) {
           <AboutPhotos />
           <div className="about-text">
             <p className="text-text-2 mb-6 text-[0.95rem] leading-[1.9]">
-              I&apos;m Bernard Mangulabnan, a 22-year-old Full Stack Web and Mobile Developer from San Luis,
+              I&apos;m Bernard Mangulabnan, a 23-year-old Full Stack Web and Mobile Developer from San Luis,
               Pampanga, Philippines, and a 2026 Computer Science graduate from Holy Cross College, Pampanga. I
               build user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
             </p>
@@ -119,7 +119,7 @@ export default function About({ summary = false }: AboutProps) {
         <RevealSection className="about-grid grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div className="about-text">
             <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
-              I&apos;m Bernard Mangulabnan, a 22-year-old Full Stack Web and Mobile Developer from San Luis, Pampanga, Philippines, and a 2026 Computer Science graduate from Holy Cross College, Pampanga. I build user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
+              I&apos;m Bernard Mangulabnan, a 23-year-old Full Stack Web and Mobile Developer from San Luis, Pampanga, Philippines, and a 2026 Computer Science graduate from Holy Cross College, Pampanga. I build user-friendly, visually appealing websites and web apps that are fast, polished, and easy to use.
             </p>
             <p className="text-text-2 mb-5 text-[0.95rem] leading-[1.9]">
               Proficient in HTML5, CSS3, JavaScript, React, Next.js, Node.js, and TypeScript. I also work with mobile development tools like Flutter and Dart, and back-end systems using Prisma, MySQL, and PHP.
