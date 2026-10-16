@@ -42,3 +42,13 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# Local design explorations and generated review artifacts
+/new-portfolio/
+/portfolio-v2/
+/portfolio-v3/
+/portfolio-v4/
+/output/
+/public/BernardMangulabnan-draft.pdf
+/public/resume-review.html
+/public/ui-*.html
