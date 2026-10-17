@@ -7,7 +7,7 @@ import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
 const title = 'Bernard C. Mangulabnan — Full Stack Web and Mobile Developer';
-const description = 'Bernard Mangulabnan builds thoughtful web and mobile products where good engineering meets a clear, human experience.';
+const description = 'Portfolio of Bernard Mangulabnan, a full-stack web and mobile developer from Pampanga, Philippines.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

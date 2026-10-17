@@ -24,8 +24,8 @@ export function HomeHero() {
     <section className="hero shell" aria-labelledby="hero-title">
       <div className="hero-copy reveal">
         <p className="eyebrow"><span className="eyebrow-line"></span> INDEPENDENT DEVELOPER <span className="availability-dot"></span> OPEN TO OPPORTUNITIES</p>
-        <h1 id="hero-title">Building for<br/><span className="hero-heading-accent">what&apos;s next<span className="hero-period">.</span></span></h1>
-        <p className="hero-lead">I&apos;m Bernard Mangulabnan. I create thoughtful web and mobile products where good engineering meets a clear, human experience.</p>
+        <h1 id="hero-title">I build web and<br/><span className="hero-heading-accent">mobile apps<span className="hero-period">.</span></span></h1>
+        <p className="hero-lead">I&apos;m Bernard Mangulabnan, a full-stack web and mobile developer from Pampanga.</p>
         <div className="hero-actions"><Link className="button button-lime" href="/work">Explore selected work <span aria-hidden="true">↗</span></Link><Link className="text-action" href="/profile">Meet the developer <span aria-hidden="true">↗</span></Link></div>
       </div>
       <div className="hero-stage" aria-label="Portraits of Bernard">
@@ -62,12 +62,12 @@ export function FeaturedShowcase() {
             <span className="selected-row-index">{project.number}</span><strong>{project.title}</strong><small>{project.categoryLabel}</small><b aria-hidden="true">↗</b>
             <span className="selected-row-expansion">
               <span className="selected-row-visual"><Image src={project.previewImage} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 88vw, 42vw"/></span>
-              <span className="selected-row-detail"><span className="eyebrow">{project.short.toUpperCase()}</span><span className="selected-row-summary">{project.description}</span><span className="selected-row-tools">{project.tech.slice(0, 4).join(' · ').toUpperCase()}</span><span className="selected-row-open">EXPLORE FULL PROJECT <b aria-hidden="true">↗</b></span></span>
+              <span className="selected-row-detail"><span className="eyebrow">{project.short.toUpperCase()}</span><span className="selected-row-summary">{project.description}</span><span className="selected-row-tools">{project.tech.slice(0, 4).join(' · ').toUpperCase()}</span><span className="selected-row-open">VIEW PROJECT DETAILS <b aria-hidden="true">↗</b></span></span>
             </span>
           </Link>
         );
       })}
-      <Link className="selected-row selected-row-all reveal" href="/work"><span>→</span><strong>See all eight projects</strong><small>FULL WORK ARCHIVE</small><b aria-hidden="true">↗</b></Link>
+      <Link className="selected-row selected-row-all reveal" href="/work"><span>→</span><strong>See all eight projects</strong><small>ALL PROJECTS</small><b aria-hidden="true">↗</b></Link>
     </div>
   );
 }

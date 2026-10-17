@@ -38,7 +38,7 @@ export default function WorkArchive() {
       </div>
       <div className="project-grid" data-view-mode={view}>
         {visible.map((project, index) => (
-          <Link key={project.slug} className={`project-card tilt-card ${project.category === 'mobile' ? 'is-mobile' : 'is-web'}${index === 0 ? ' is-featured' : ''}`} href={`/projects/${project.slug}`} aria-label={`Open full record for ${project.title}`}>
+          <Link key={project.slug} className={`project-card tilt-card ${project.category === 'mobile' ? 'is-mobile' : 'is-web'}${index === 0 ? ' is-featured' : ''}`} href={`/projects/${project.slug}`} aria-label={`View details for ${project.title}`}>
             <span className="project-card-visual"><Image src={project.previewImage} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 32vw"/></span>
             <span className="project-card-copy"><small>{project.number} / {project.categoryLabel}</small><strong>{project.title}</strong><span>{project.short} <b aria-hidden="true">↗</b></span></span>
           </Link>

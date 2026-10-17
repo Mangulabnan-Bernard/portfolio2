@@ -68,8 +68,8 @@ export default async function GitHubReposContent() {
   return (
     <section className="github-activity-section section shell" id="github" aria-labelledby="github-title">
       <div className="section-head reveal">
-        <div><p className="eyebrow">04 / OPEN SOURCE</p><h2 id="github-title">Recent work,<br/><em>still moving.</em></h2></div>
-        <p>Fresh public repositories and experiments, pulled directly from GitHub.</p>
+        <div><p className="eyebrow">04 / GITHUB</p><h2 id="github-title">Recent GitHub<br/><em>projects.</em></h2></div>
+        <p>My latest public repositories, pulled directly from GitHub.</p>
       </div>
       {repos.length > 0 ? (
         <div className="github-repo-grid">
@@ -89,7 +89,7 @@ export default async function GitHubReposContent() {
                   </svg>
                   <strong>{repo.name}</strong>
                 </div>
-                <p>{repo.description ?? 'An active public project in Bernard’s GitHub archive.'}</p>
+                <p>{repo.description ?? 'A public project from my GitHub profile.'}</p>
                 <div className="github-repo-meta">
                   {repo.language && (
                     <span>
@@ -108,7 +108,7 @@ export default async function GitHubReposContent() {
           })}
         </div>
       ) : (
-        <p className="github-empty reveal">GitHub activity is temporarily unavailable, but the public archive is still one click away.</p>
+        <p className="github-empty reveal">GitHub activity is temporarily unavailable. You can still open my public profile.</p>
       )}
       <div className="github-action reveal"><a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="button button-outline">View GitHub profile <span aria-hidden="true">↗</span></a></div>
     </section>

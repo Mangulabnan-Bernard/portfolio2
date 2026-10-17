@@ -186,7 +186,7 @@ export default function PortfolioChrome({ children }: { children: React.ReactNod
       </div></header>
       <HeartDock />
       {children}
-      <footer className="site-footer"><div className="shell footer-inner"><span>© {new Date().getFullYear()} BERNARD C. MANGULABNAN</span><span>BUILT WITH PURPOSE / PAMPANGA, PH</span><a href="#main">BACK TO TOP ↑</a></div></footer>
+      <footer className="site-footer"><div className="shell footer-inner"><span>© {new Date().getFullYear()} BERNARD C. MANGULABNAN</span><span>BUILT BY BERNARD / PAMPANGA, PH</span><a href="#main">BACK TO TOP ↑</a></div></footer>
     </>
   );
 }
