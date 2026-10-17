@@ -64,6 +64,11 @@ CONTACT_FROM_EMAIL="Portfolio <onboarding@resend.dev>"
 # Recent GitHub activity — optional; raises the unauthenticated rate limit.
 GITHUB_TOKEN=ghp_xxx
 
+# Heart counter (Upstash Redis). The salt keeps stored IP fingerprints private.
+UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
+UPSTASH_REDIS_REST_TOKEN=xxx
+HEART_RATE_LIMIT_SALT=use-a-long-random-secret
+
 # Analytics (PostHog) — client
 NEXT_PUBLIC_POSTHOG_KEY=phc_xxx
 NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com

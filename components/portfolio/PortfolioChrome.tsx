@@ -64,6 +64,7 @@ function HeartDock() {
   const [available, setAvailable] = useState(false);
   const [open, setOpen] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
   const [status, setStatus] = useState('');
   const dockRef = useRef<HTMLElement>(null);
   const openedAt = useRef(0);
@@ -111,6 +112,14 @@ function HeartDock() {
     setStatus('Adding your heart…');
     try {
       const response = await fetch('/api/hearts', { method: 'POST', cache: 'no-store', credentials: 'same-origin' });
+      if (response.status === 429) {
+        const next = (await response.json()) as HeartState;
+        if (Number.isSafeInteger(next.count)) setState(next);
+        setLimitReached(true);
+        setAvailable(false);
+        setStatus('This network has reached its daily heart limit. Please try again later.');
+        return;
+      }
       if (!response.ok) throw new Error('Heart counter unavailable');
       const next = (await response.json()) as HeartState;
       setState(next);
@@ -128,9 +137,9 @@ function HeartDock() {
       <button className={`heart-design-two-toggle${state.hearted ? ' is-hearted' : ''}`} type="button" aria-expanded={open} aria-controls="appreciation-panel" aria-label={open ? 'Close appreciation panel' : 'Open appreciation panel'} onClick={toggleOpen}>
         <span aria-hidden="true">♥</span><strong>{count}</strong><small>HEART</small>
       </button>
-      <button id="appreciation-panel" className={`heart-button${state.hearted ? ' is-hearted' : ''}`} type="button" onClick={addHeart} aria-label={state.hearted ? `${state.count} hearts. You hearted this portfolio.` : `Heart this portfolio. ${state.count} hearts.`} aria-pressed={state.hearted} aria-hidden={!open} tabIndex={open ? 0 : -1} disabled={!available || state.hearted}>
+      <button id="appreciation-panel" className={`heart-button${state.hearted ? ' is-hearted' : ''}`} type="button" onClick={addHeart} aria-label={state.hearted ? `${state.count} hearts. You hearted this portfolio.` : limitReached ? `${state.count} hearts. This network has reached its daily heart limit.` : `Heart this portfolio. ${state.count} hearts.`} aria-pressed={state.hearted} aria-hidden={!open} tabIndex={open ? 0 : -1} disabled={!available || state.hearted}>
         <span className="heart-symbol"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span>
-        <span className="heart-copy"><span className="heart-kicker">{state.hearted ? 'THANK YOU' : 'LEAVE A HEART'}</span><span className="heart-total"><strong>{count}</strong><small>HEARTS</small></span></span>
+        <span className="heart-copy"><span className="heart-kicker">{state.hearted ? 'THANK YOU' : limitReached ? 'DAILY LIMIT REACHED' : 'LEAVE A HEART'}</span><span className="heart-total"><strong>{count}</strong><small>HEARTS</small></span></span>
         <span className="heart-spark" aria-hidden="true">✦</span>
       </button>
       <span className="heart-design-two-caption" aria-hidden="true"><span>YOUR HEART COUNTS :)</span></span>
